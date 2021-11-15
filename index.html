@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teletype v4.0.0 Cheatsheet</title>
+<link id="favicon" rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpaJVETuIOASsThbELxylikWwUNoKrTqYXPoFTRqSFBdHwbXg4Mdi1cHFWVcHV0EQ/ABxc3NSdJES/5cUWsR6cNyPd/ced+8AoVpkqtk2DqiaZcQjYTGVXhV9r+hCD/owjWGJmXo0sZhEy/F1Dw9f70I8q/W5P0e3kjEZ4BGJ55huWMQbxDObls55nzjA8pJCfE48ZtAFiR+5Lrv8xjnnsMAzA0YyPk8cIBZzTSw3McsbKvEUcVBRNcoXUi4rnLc4q8Uyq9+Tv9Cf0VYSXKc5hAiWEEUMImSUUUARFkK0aqSYiNN+uIV/0PHHyCWTqwBGjgWUoEJy/OB/8LtbMzs54Sb5w0D7i21/jAC+XaBWse3vY9uunQDeZ+BKa/hLVWD2k/RKQwseAb3bwMV1Q5P3gMsdYOBJlwzJkbw0hWwWeD+jb0oD/bdA55rbW30fpw9AkrpavgEODoHRHGWvt3h3R3Nv/56p9/cD0YtyzV3acNcAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQflCw4VAwu7QI1jAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAFlJREFUOMtj1NNT/89AAWBioBAMvAEspChOD34LZ89cK0zYgENzb8LZdsnquL2ArBAZwDTh0gw3wC5ZHachRAciuYYwIfsXn1PxGkCuZpQwwAUIGcw4mhcYAA77Gn9K7Iy3AAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600;700&family=Roboto:wght@500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style type="text/css">
+body {
+    background: #eeeef2; color: #222228;
+}
+a {
+    color: inherit; text-decoration: inherit;
+}
+code{
+    font-family: 'Roboto Mono', monospace;
+}
+.links {
+    /* style */
+    font-family: 'Roboto Mono', monospace; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); text-align: right; padding: 1%; font-size: larger;
+    /* positioning */
+    height: 100vh; width: 10vw; position: fixed; top: 0; left: 0;
+}
+.content {
+    /* style */
+    padding: 1%;
+    /* positioning */
+    height: 100vh; width: 90vw; position: fixed; top: 0; left: 10vw;
+}
+.fixturtle {
+    /* I suffer for my art */
+    transform: rotate(180deg); display: inline-block;
+}
+.prototype {
+    font-family: 'Roboto Mono', monospace; margin-bottom: 0.1em; font-weight: bolder;
+}
+.short {
+    font-family: 'Roboto', sans-serif; margin-bottom: 0.75em;
+}
+.description {
+    font-family: 'Roboto', sans-serif; font-size: smaller; letter-spacing: -0.05em;
+}
+</style>
+</head>
+<body>
+<div class="links"><span class="section"><a href="#turtle"><span class="fixturtle">🐢</span></a></span>
+<span class="section"><a href="#seed">Seed</a></span>
+<span class="section"><a href="#queue">Queue</a></span>
+<span class="section"><a href="#stack">Stack</a></span>
+<span class="section"><a href="#delay">Del</a></span>
+<span class="section"><a href="#metronome">Metro</a></span>
+<span class="section"><a href="#maths">Math</a></span>
+<span class="section"><a href="#controlflow">Flow</a></span>
+<span class="section"><a href="#patterns">Pat</a></span>
+<span class="section"><a href="#hardware">H/W</a></span>
+<span class="section"><a href="#variables">Var</a></span>
+</div>
+<div class="content"><div class="prototype">A</div>
+<div class="short">get / set the variable <code>A</code>, default <code>1</code></div>
+<div class="prototype">B</div>
+<div class="short">get / set the variable <code>B</code>, default <code>2</code></div>
+<div class="prototype">C</div>
+<div class="short">get / set the variable <code>C</code>, default <code>3</code></div>
+<div class="prototype">D</div>
+<div class="short">get / set the variable <code>D</code>, default <code>4</code></div>
+<div class="prototype">DRUNK</div>
+<div class="short">changes by <code>-1</code>, <code>0</code>, or <code>1</code> upon each read saving its state,
+setting will give it a new value for the next read</div>
+<div class="prototype">DRUNK.MIN</div>
+<div class="short">set the lower bound for <code>DRUNK</code>, default <code>0</code></div>
+<div class="prototype">DRUNK.MAX</div>
+<div class="short">set the upper bound for <code>DRUNK</code>, default <code>255</code></div>
+<div class="prototype">DRUNK.WRAP</div>
+<div class="short">should <code>DRUNK</code> wrap around when it reaches its bounds, default <code>0</code></div>
+<div class="prototype">FLIP</div>
+<div class="short">returns inverted state (<code>0</code> or <code>1</code>) on each read (also settable)</div>
+<div class="prototype">I</div>
+<div class="short">get / set the variable <code>I</code></div>
+<div class="prototype">O</div>
+<div class="short">auto-increments _after_ each access, can be set, starting value <code>0</code></div>
+<div class="prototype">O.INC</div>
+<div class="short">how much to increment <code>O</code> by on each invocation, default <code>1</code></div>
+<div class="prototype">O.MIN</div>
+<div class="short">the lower bound for <code>O</code>, default <code>0</code></div>
+<div class="prototype">O.MAX</div>
+<div class="short">the upper bound for <code>O</code>, default <code>63</code></div>
+<div class="prototype">O.WRAP</div>
+<div class="short">should <code>O</code> wrap when it reaches its bounds, default <code>1</code></div>
+<div class="prototype">T</div>
+<div class="short">get / set the variable <code>T</code>, typically used for time, default <code>0</code></div>
+<div class="prototype">TIME</div>
+<div class="short">timer value, counts up in ms., wraps after 32s, can be set</div>
+<div class="prototype">TIME.ACT</div>
+<div class="short">enable or disable timer counting, default <code>1</code></div>
+<div class="prototype">LAST x</div>
+<div class="short">get value in milliseconds since last script run time</div>
+<div class="prototype">X</div>
+<div class="short">get / set the variable <code>X</code>, default <code>0</code></div>
+<div class="prototype">Y</div>
+<div class="short">get / set the variable <code>Y</code>, default <code>0</code></div>
+<div class="prototype">Z</div>
+<div class="short">get / set the variable <code>Z</code>, default <code>0</code></div>
+<div class="prototype">J</div>
+<div class="short">get / set the variable <code>J</code></div>
+<div class="prototype">K</div>
+<div class="short">get / set the variable <code>K</code></div>
+<div class="prototype">CV x</div>
+<div class="short">CV target value</div>
+<div class="prototype">CV.OFF x</div>
+<div class="short">CV offset added to output</div>
+<div class="prototype">CV.SET x</div>
+<div class="short">Set CV value</div>
+<div class="prototype">CV.SLEW x</div>
+<div class="short">Get/set the CV slew time in ms</div>
+<div class="prototype">IN</div>
+<div class="short">Get the value of IN jack (0-16383)</div>
+<div class="prototype">IN.SCALE min max</div>
+<div class="short">Set static scaling of the <code>IN</code> CV to between <code>min</code> and <code>max</code>.</div>
+<div class="prototype">PARAM</div>
+<div class="short">Get the value of PARAM knob (0-16383)</div>
+<div class="prototype">PARAM.SCALE min max</div>
+<div class="short">Set static scaling of the PARAM knob to between <code>min</code> and <code>max</code>.</div>
+<div class="prototype">IN.CAL.MIN</div>
+<div class="short">Reads the input CV and assigns the voltage to the zero point</div>
+<div class="prototype">IN.CAL.MAX</div>
+<div class="short">Reads the input CV and assigns the voltage to the max point</div>
+<div class="prototype">IN.CAL.RESET</div>
+<div class="short">Resets the input CV calibration</div>
+<div class="prototype">PARAM.CAL.MIN</div>
+<div class="short">Reads the Parameter Knob minimum position and assigns a zero value</div>
+<div class="prototype">PARAM.CAL.MAX</div>
+<div class="short">Reads the Parameter Knob maximum position and assigns the maximum point</div>
+<div class="prototype">PARAM.CAL.RESET</div>
+<div class="short">Resets the Parameter Knob calibration</div>
+<div class="prototype">TR x</div>
+<div class="short">Set trigger output x to y (0-1)</div>
+<div class="prototype">TR.POL x</div>
+<div class="short">Set polarity of trigger output x to y (0-1)</div>
+<div class="prototype">TR.TIME x</div>
+<div class="short">Set the pulse time of trigger x to y ms</div>
+<div class="prototype">TR.TOG x</div>
+<div class="short">Flip the state of trigger output x</div>
+<div class="prototype">TR.PULSE x</div>
+<div class="short">Pulse trigger output x</div>
+<div class="prototype">MUTE x</div>
+<div class="short">Disable trigger input x</div>
+<div class="prototype">STATE x</div>
+<div class="short">Read the current state of input x</div>
+<div class="prototype">DEVICE.FLIP</div>
+<div class="short">Flip the screen/inputs/outputs</div>
+<div class="prototype">LIVE.OFF</div>
+<div class="short">Show the default live mode screen</div>
+<div class="prototype">LIVE.VARS</div>
+<div class="short">Show variables in live mode</div>
+<div class="prototype">LIVE.GRID</div>
+<div class="short">Show grid visualizer in live mode</div>
+<div class="prototype">LIVE.DASH x</div>
+<div class="short">Show the dashboard with index <code>x</code></div>
+<div class="prototype">PRINT x</div>
+<div class="short">Print a value on a live mode dashboard or get the printed value</div>
+<div class="prototype">P.N</div>
+<div class="short">get/set the pattern number for the working pattern, default <code>0</code></div>
+<div class="prototype">P x</div>
+<div class="short">get/set the value of the working pattern at index <code>x</code></div>
+<div class="prototype">PN x y</div>
+<div class="short">get/set the value of pattern <code>x</code> at index <code>y</code></div>
+<div class="prototype">P.L</div>
+<div class="short">get/set pattern length of the working pattern, non-destructive to data</div>
+<div class="prototype">PN.L x</div>
+<div class="short">get/set pattern length of pattern x. non-destructive to data</div>
+<div class="prototype">P.WRAP</div>
+<div class="short">when the working pattern reaches its bounds does it wrap (<code>0/1</code>), default <code>1</code> (enabled)</div>
+<div class="prototype">PN.WRAP x</div>
+<div class="short">when pattern <code>x</code> reaches its bounds does it wrap (<code>0/1</code>), default <code>1</code> (enabled)</div>
+<div class="prototype">P.START</div>
+<div class="short">get/set the start location of the working pattern, default <code>0</code></div>
+<div class="prototype">PN.START x</div>
+<div class="short">get/set the start location of pattern <code>x</code>, default <code>0</code></div>
+<div class="prototype">P.END</div>
+<div class="short">get/set the end location of the working pattern, default <code>63</code></div>
+<div class="prototype">PN.END x</div>
+<div class="short">get/set the end location of the pattern <code>x</code>, default <code>63</code></div>
+<div class="prototype">P.I</div>
+<div class="short">get/set index position for the working pattern.</div>
+<div class="prototype">PN.I x</div>
+<div class="short">get/set index position for pattern <code>x</code></div>
+<div class="prototype">P.HERE</div>
+<div class="short">get/set value at current index of working pattern</div>
+<div class="prototype">PN.HERE x</div>
+<div class="short">get/set value at current index of pattern <code>x</code></div>
+<div class="prototype">P.NEXT</div>
+<div class="short">increment index of working pattern then get/set value</div>
+<div class="prototype">PN.NEXT x</div>
+<div class="short">increment index of pattern <code>x</code> then get/set value</div>
+<div class="prototype">P.PREV</div>
+<div class="short">decrement index of working pattern then get/set value</div>
+<div class="prototype">PN.PREV x</div>
+<div class="short">decrement index of pattern <code>x</code> then get/set value</div>
+<div class="prototype">P.INS x y</div>
+<div class="short">insert value <code>y</code> at index <code>x</code> of working pattern, shift later values down, destructive to loop length</div>
+<div class="prototype">PN.INS x y z</div>
+<div class="short">insert value <code>z</code> at index <code>y</code> of pattern <code>x</code>, shift later values down, destructive to loop length</div>
+<div class="prototype">P.RM x</div>
+<div class="short">delete index <code>x</code> of working pattern, shift later values up, destructive to loop length</div>
+<div class="prototype">PN.RM x y</div>
+<div class="short">delete index <code>y</code> of pattern <code>x</code>, shift later values up, destructive to loop length</div>
+<div class="prototype">P.PUSH x</div>
+<div class="short">insert value <code>x</code> to the end of the working pattern (like a stack), destructive to loop length</div>
+<div class="prototype">PN.PUSH x y</div>
+<div class="short">insert value <code>y</code> to the end of pattern <code>x</code> (like a stack), destructive to loop length</div>
+<div class="prototype">P.POP</div>
+<div class="short">return and remove the value from the end of the working pattern (like a stack), destructive to loop length</div>
+<div class="prototype">PN.POP x</div>
+<div class="short">return and remove the value from the end of pattern <code>x</code> (like a stack), destructive to loop length</div>
+<div class="prototype">P.MIN</div>
+<div class="short">find the first minimum value in the pattern between the START and END for the working pattern and return its index</div>
+<div class="prototype">PN.MIN x</div>
+<div class="short">find the first minimum value in the pattern between the START and END for pattern <code>x</code> and return its index</div>
+<div class="prototype">P.MAX</div>
+<div class="short">find the first maximum value in the pattern between the START and END for the working pattern and return its index</div>
+<div class="prototype">PN.MAX x</div>
+<div class="short">find the first maximum value in the pattern between the START and END for pattern <code>x</code> and return its index</div>
+<div class="prototype">P.SHUF</div>
+<div class="short">shuffle the values in active pattern (between its START and END)</div>
+<div class="prototype">PN.SHUF x</div>
+<div class="short">shuffle the values in pattern <code>x</code> (between its START and END)</div>
+<div class="prototype">P.ROT n</div>
+<div class="short">rotate the values in the active pattern <code>n</code> steps (between its START and END, negative rotates backward)</div>
+<div class="prototype">PN.ROT x n</div>
+<div class="short">rotate the values in pattern <code>x</code> (between its START and END, negative rotates backward)</div>
+<div class="prototype">P.REV</div>
+<div class="short">reverse the values in the active pattern (between its START and END)</div>
+<div class="prototype">PN.REV x</div>
+<div class="short">reverse the values in pattern <code>x</code></div>
+<div class="prototype">P.RND</div>
+<div class="short">return a value randomly selected between the start and the end position</div>
+<div class="prototype">PN.RND x</div>
+<div class="short">return a value randomly selected between the start and the end position of pattern <code>x</code></div>
+<div class="prototype">P.+ x y</div>
+<div class="short">increase the value of the working pattern at index <code>x</code> by <code>y</code></div>
+<div class="prototype">PN.+ x y z</div>
+<div class="short">increase the value of pattern <code>x</code> at index <code>y</code> by <code>z</code></div>
+<div class="prototype">P.- x y</div>
+<div class="short">decrease the value of the working pattern at index <code>x</code> by <code>y</code></div>
+<div class="prototype">PN.- x y z</div>
+<div class="short">decrease the value of pattern <code>x</code> at index <code>y</code> by <code>z</code></div>
+<div class="prototype">P.+W x y a b</div>
+<div class="short">increase the value of the working pattern at index <code>x</code> by <code>y</code> and wrap it to <code>a</code>..<code>b</code> range</div>
+<div class="prototype">PN.+W x y z a b</div>
+<div class="short">increase the value of pattern <code>x</code> at index <code>y</code> by <code>z</code> and wrap it to <code>a</code>..<code>b</code> range</div>
+<div class="prototype">P.-W x y a b</div>
+<div class="short">decrease the value of the working pattern at index <code>x</code> by <code>y</code> and wrap it to <code>a</code>..<code>b</code> range</div>
+<div class="prototype">PN.-W x y z a b</div>
+<div class="short">decrease the value of pattern <code>x</code> at index <code>y</code> by <code>z</code> and wrap it to <code>a</code>..<code>b</code> range</div>
+<div class="prototype">P.MAP: ...</div>
+<div class="short">apply the 'function' to each value in the active pattern, <code>I</code> takes each pattern value</div>
+<div class="prototype">PN.MAP x: ...</div>
+<div class="short">apply the 'function' to each value in pattern <code>x</code>, <code>I</code> takes each pattern value</div>
+<div class="prototype">IF x: ...</div>
+<div class="short">if <code>x</code> is not zero execute command</div>
+<div class="prototype">ELIF x: ...</div>
+<div class="short">if all previous <code>IF</code> / <code>ELIF</code> fail, and <code>x</code> is not zero, execute command</div>
+<div class="prototype">ELSE: ...</div>
+<div class="short">if all previous <code>IF</code> / <code>ELIF</code> fail, excute command</div>
+<div class="prototype">L x y: ...</div>
+<div class="short">run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></div>
+<div class="prototype">W x: ...</div>
+<div class="short">run the command while condition x is true</div>
+<div class="prototype">EVERY x: ...</div>
+<div class="short">run the command every <code>x</code> times the command is called</div>
+<div class="prototype">SKIP x: ...</div>
+<div class="short">run the command every time except the <code>x</code>th time.</div>
+<div class="prototype">OTHER: ...</div>
+<div class="short">runs the command when the previous <code>EVERY</code>/<code>SKIP</code> did not run its command.</div>
+<div class="prototype">SYNC x</div>
+<div class="short">synchronizes _all_ <code>EVERY</code> and <code>SKIP</code> counters to offset <code>x</code>.</div>
+<div class="prototype">PROB x: ...</div>
+<div class="short">potentially execute command with probability <code>x</code> (0-100)</div>
+<div class="prototype">SCRIPT</div>
+<div class="short">get current script number, or execute script <code>x</code> (1-10), recursion allowed</div>
+<div class="prototype">SCRIPT.POL x</div>
+<div class="short">get script x trigger polarity, or set polarity p (1 rising edge, 2 falling, 3 both)</div>
+<div class="prototype">SCENE</div>
+<div class="short">get the current scene number, or load scene <code>x</code> (0-31)</div>
+<div class="prototype">SCENE.G x</div>
+<div class="short">load scene <code>x</code> (0-31) without loading grid control states</div>
+<div class="prototype">SCENE.P x</div>
+<div class="short">load scene <code>x</code> (0-31) without loading pattern state</div>
+<div class="prototype">KILL</div>
+<div class="short">clears stack, clears delays, cancels pulses, cancels slews, disables metronome</div>
+<div class="prototype">BREAK</div>
+<div class="short">halts execution of the current script</div>
+<div class="prototype">INIT</div>
+<div class="short">clears all state data</div>
+<div class="prototype">INIT.CV x</div>
+<div class="short">clears all parameters on CV associated with output x</div>
+<div class="prototype">INIT.CV.ALL</div>
+<div class="short">clears all parameters on all CV's</div>
+<div class="prototype">INIT.DATA</div>
+<div class="short">clears all data held in all variables</div>
+<div class="prototype">INIT.P x</div>
+<div class="short">clears pattern associated with pattern number x</div>
+<div class="prototype">INIT.P.ALL</div>
+<div class="short">clears all patterns</div>
+<div class="prototype">INIT.SCENE</div>
+<div class="short">loads a blank scene</div>
+<div class="prototype">INIT.SCRIPT x</div>
+<div class="short">clear script number x</div>
+<div class="prototype">INIT.SCRIPT.ALL</div>
+<div class="short">clear all scripts</div>
+<div class="prototype">INIT.TIME x</div>
+<div class="short">clear time on trigger x</div>
+<div class="prototype">INIT.TR x</div>
+<div class="short">clear all parameters on trigger associated with TR x</div>
+<div class="prototype">INIT.TR.ALL</div>
+<div class="short">clear all triggers</div>
+<div class="prototype">ADD x y</div>
+<div class="short">add <code>x</code> and <code>y</code> together</div>
+<div class="prototype">SUB x y</div>
+<div class="short">subtract <code>y</code> from <code>x</code></div>
+<div class="prototype">MUL x y</div>
+<div class="short">multiply <code>x</code> and <code>y</code> together</div>
+<div class="prototype">DIV x y</div>
+<div class="short">divide <code>x</code> by <code>y</code></div>
+<div class="prototype">MOD x y</div>
+<div class="short">find the remainder after division of <code>x</code> by <code>y</code></div>
+<div class="prototype">RAND x</div>
+<div class="short">generate a random number between <code>0</code> and <code>x</code> inclusive</div>
+<div class="prototype">RRAND x y</div>
+<div class="short">generate a random number between <code>x</code> and <code>y</code> inclusive</div>
+<div class="prototype">TOSS</div>
+<div class="short">randomly return <code>0</code> or <code>1</code></div>
+<div class="prototype">? x y z</div>
+<div class="short">if condition <code>x</code> is true return <code>y</code>, otherwise return <code>z</code></div>
+<div class="prototype">MIN x y</div>
+<div class="short">return the minimum of <code>x</code> and <code>y</code></div>
+<div class="prototype">MAX x y</div>
+<div class="short">return the maximum of <code>x</code> and <code>y</code></div>
+<div class="prototype">LIM x y z</div>
+<div class="short">limit the value <code>x</code> to the range <code>y</code> to <code>z</code> inclusive</div>
+<div class="prototype">WRAP x y z</div>
+<div class="short">limit the value <code>x</code> to the range <code>y</code> to <code>z</code> inclusive, but with wrapping</div>
+<div class="prototype">QT x y</div>
+<div class="short">round <code>x</code> to the closest multiple of <code>y</code> (quantise)</div>
+<div class="prototype">QT.S x r s</div>
+<div class="short">quantize 1V/OCT signal <code>x</code> to scale <code>s</code> (0-8, reference N.S scales) with root 1V/OCT pitch <code>r</code></div>
+<div class="prototype">QT.CS x r s d c</div>
+<div class="short">quantize 1V/OCT signal <code>x</code> to chord <code>c</code> (1-7) from scale <code>s</code> (0-8, reference N.S scales) at degree <code>d</code> (1-7) with root 1V/OCT pitch <code>r</code></div>
+<div class="prototype">QT.B x</div>
+<div class="short">quantize 1V/OCT signal <code>x</code> to scale defined by <code>N.B</code></div>
+<div class="prototype">QT.BX x i</div>
+<div class="short">quantize 1V/OCT signal <code>x</code> to scale defined by <code>N.BX</code> in scale index <code>i</code></div>
+<div class="prototype">AVG x y</div>
+<div class="short">the average of <code>x</code> and <code>y</code></div>
+<div class="prototype">EQ x y</div>
+<div class="short">does <code>x</code> equal <code>y</code></div>
+<div class="prototype">NE x y</div>
+<div class="short"><code>x</code> is not equal to <code>y</code></div>
+<div class="prototype">LT x y</div>
+<div class="short"><code>x</code> is less than <code>y</code></div>
+<div class="prototype">GT x y</div>
+<div class="short"><code>x</code> is greater than <code>y</code></div>
+<div class="prototype">LTE x y</div>
+<div class="short"><code>x</code> is less than or equal to <code>y</code></div>
+<div class="prototype">GTE x y</div>
+<div class="short"><code>x</code> is greater than or equal to <code>y</code></div>
+<div class="prototype">INR l x h</div>
+<div class="short"><code>x</code> is greater than <code>l</code> and less than <code>h</code> (within range)</div>
+<div class="prototype">OUTR l x h</div>
+<div class="short"><code>x</code> is less than <code>l</code> or greater than <code>h</code> (out of range)</div>
+<div class="prototype">INRI l x h</div>
+<div class="short"><code>x</code> is greater than or equal to <code>l</code> and less than or equal to <code>h</code> (within range, inclusive)</div>
+<div class="prototype">OUTRI l x h</div>
+<div class="short"><code>x</code> is less than or equal to <code>l</code> or greater than or equal to <code>h</code> (out of range, inclusive)</div>
+<div class="prototype">EZ x</div>
+<div class="short"><code>x</code> is <code>0</code>, equivalent to logical NOT</div>
+<div class="prototype">NZ x</div>
+<div class="short"><code>x</code> is not <code>0</code></div>
+<div class="prototype">LSH x y</div>
+<div class="short">left shift <code>x</code> by <code>y</code> bits, in effect multiply <code>x</code> by <code>2</code> to the power of <code>y</code></div>
+<div class="prototype">RSH x y</div>
+<div class="short">right shift <code>x</code> by <code>y</code> bits, in effect divide <code>x</code> by <code>2</code> to the power of <code>y</code></div>
+<div class="prototype">LROT x y</div>
+<div class="short">circular left shift <code>x</code> by <code>y</code> bits, wrapping around when bits fall off the end</div>
+<div class="prototype">RROT x y</div>
+<div class="short">circular right shift <code>x</code> by <code>y</code> bits, wrapping around when bits fall off the end</div>
+<div class="prototype">| x y</div>
+<div class="short">bitwise or <code>x</code> | <code>y</code></div>
+<div class="prototype">& x y</div>
+<div class="short">bitwise and <code>x</code> & <code>y</code></div>
+<div class="prototype">^ x y</div>
+<div class="short">bitwise xor <code>x</code> ^ <code>y</code></div>
+<div class="prototype">~ x</div>
+<div class="short">bitwise not, i.e.: inversion of <code>x</code></div>
+<div class="prototype">BSET x y</div>
+<div class="short">set bit <code>y</code> in value <code>x</code></div>
+<div class="prototype">BGET x y</div>
+<div class="short">get bit <code>y</code> in value <code>x</code></div>
+<div class="prototype">BCLR x y</div>
+<div class="short">clear bit <code>y</code> in value <code>x</code></div>
+<div class="prototype">BTOG x y</div>
+<div class="short">toggle bit <code>y</code> in value <code>x</code></div>
+<div class="prototype">BREV x</div>
+<div class="short">reverse bit order in value <code>x</code></div>
+<div class="prototype">ABS x</div>
+<div class="short">absolute value of <code>x</code></div>
+<div class="prototype">AND x y</div>
+<div class="short">logical AND of <code>x</code> and <code>y</code></div>
+<div class="prototype">AND3 x y z</div>
+<div class="short">logical AND of <code>x</code>, <code>y</code> and <code>z</code></div>
+<div class="prototype">AND4 x y z a</div>
+<div class="short">logical AND of <code>x</code>, <code>y</code>, <code>z</code> and <code>a</code></div>
+<div class="prototype">OR x y</div>
+<div class="short">logical OR of <code>x</code> and <code>y</code></div>
+<div class="prototype">OR3 x y z</div>
+<div class="short">logical OR of <code>x</code>, <code>y</code> and <code>z</code></div>
+<div class="prototype">OR4 x y z a</div>
+<div class="short">logical OR of <code>x</code>, <code>y</code>, <code>z</code> and <code>a</code></div>
+<div class="prototype">JI x y</div>
+<div class="short">just intonation helper, precision ratio divider normalised to 1V</div>
+<div class="prototype">SCALE a b x y i</div>
+<div class="short">scale <code>i</code> from range <code>a</code> to <code>b</code> to range <code>x</code> to <code>y</code>, i.e. <code>i * (y - x) / (b - a)</code></div>
+<div class="prototype">ER f l i</div>
+<div class="short">Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></div>
+<div class="prototype">NR p m f s</div>
+<div class="short">Numeric Repeater, <code>p</code> is prime pattern (<code>0-31</code>), <code>m</code> is & mask (<code>0-3</code>), <code>f</code> is variation factor (<code>0-16</code>) and <code>s</code> is step (<code>0-15</code>), returns <code>0</code> or <code>1</code></div>
+<div class="prototype">BPM x</div>
+<div class="short">milliseconds per beat in BPM <code>x</code></div>
+<div class="prototype">N x</div>
+<div class="short">converts an equal temperament note number to a value usable by the CV outputs (<code>x</code> in the range <code>-127</code> to <code>127</code>)</div>
+<div class="prototype">VN x</div>
+<div class="short">converts 1V/OCT value <code>x</code> to an equal temperament note number</div>
+<div class="prototype">HZ x</div>
+<div class="short">converts 1V/OCT value <code>x</code> to Hz/Volt value, useful for controlling non-euro synths like Korg MS-20</div>
+<div class="prototype">N.B d</div>
+<div class="short">get degree <code>d</code> of scale/set scale root to <code>r</code>, scale to <code>s</code>, <code>s</code> is either bit mask (<code>s</code> >= 1) or scale preset (<code>s</code> < 1)</div>
+<div class="prototype">N.BX i d</div>
+<div class="short">multi-index version of N.B, scale at <code>i</code> (index) 0 is shared with N.B</div>
+<div class="prototype">N.S r s d</div>
+<div class="short">Note Scale operator, <code>r</code> is the root note (<code>0-127</code>), <code>s</code> is the scale (<code>0-8</code>) and <code>d</code> is the degree (<code>1-7</code>), returns a value from the <code>N</code> table.</div>
+<div class="prototype">N.C r c d</div>
+<div class="short">Note Chord operator, <code>r</code> is the root note (<code>0-127</code>), <code>c</code> is the chord (<code>0-12</code>) and <code>d</code> is the degree (<code>0-3</code>), returns a value from the <code>N</code> table.</div>
+<div class="prototype">N.CS r s d c</div>
+<div class="short">Note Chord Scale operator, <code>r</code> is the root note (<code>0-127</code>), <code>s</code> is the scale (<code>0-8</code>), <code>d</code> is the scale degree (<code>1-7</code>) and <code>c</code> is the chord component (<code>0-3</code>), returns a value from the <code>N</code> table.</div>
+<div class="prototype">V x</div>
+<div class="short">converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>10</code>)</div>
+<div class="prototype">VV x</div>
+<div class="short">converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>1000</code>, <code>100</code> represents 1V)</div>
+<div class="prototype">EXP x</div>
+<div class="short">exponentiation table lookup. <code>0-16383</code> range (V <code>0-10</code>)</div>
+<div class="prototype">SGN x</div>
+<div class="short">sign function: 1 for positive, -1 for negative, 0 for 0</div>
+<div class="prototype">CHAOS x</div>
+<div class="short">get next value from chaos generator, or set the current value</div>
+<div class="prototype">CHAOS.R x</div>
+<div class="short">get or set the <code>R</code> parameter for the <code>CHAOS</code> generator</div>
+<div class="prototype">CHAOS.ALG x</div>
+<div class="short">get or set the algorithm for the <code>CHAOS</code> generator. 0 = LOGISTIC, 1 = CUBIC, 2 = HENON, 3 = CELLULAR</div>
+<div class="prototype">R</div>
+<div class="short">get a random number/set <code>R.MIN</code> and <code>R.MAX</code> to same value <code>x</code> (effectively allowing <code>R</code> to be used as a global variable)</div>
+<div class="prototype">R.MIN x</div>
+<div class="short">set the lower end of the range from -32768 â€“ 32767, default: 0</div>
+<div class="prototype">R.MAX x</div>
+<div class="short">set the upper end of the range from -32768 â€“ 32767, default: 16383</div>
+<div class="prototype">M</div>
+<div class="short">get/set metronome interval to <code>x</code> (in ms), default <code>1000</code>, minimum value <code>25</code></div>
+<div class="prototype">M!</div>
+<div class="short">get/set metronome to experimental interval <code>x</code> (in ms), minimum value <code>2</code></div>
+<div class="prototype">M.ACT</div>
+<div class="short">get/set metronome activation to <code>x</code> (<code>0/1</code>), default <code>1</code> (enabled)</div>
+<div class="prototype">M.RESET</div>
+<div class="short">hard reset metronome count without triggering</div>
+<div class="prototype">DEL x: ...</div>
+<div class="short">Delay command by <code>x</code> ms</div>
+<div class="prototype">DEL.CLR</div>
+<div class="short">Clear the delay buffer</div>
+<div class="prototype">DEL.X x delay_time: ...</div>
+<div class="short">Delay <code>x</code> commands at <code>delay_time</code> ms intervals</div>
+<div class="prototype">DEL.R x delay_time: ...</div>
+<div class="short">Trigger the command following the colon once immediately, and delay <code>x - 1</code> commands at <code>delay_time</code> ms intervals</div>
+<div class="prototype">DEL.G x delay_time num denom: ...</div>
+<div class="short">Trigger the command once immediately and <code>x - 1</code> times at ms intervals of <code>delay_time * (num/denom)^n</code> where n ranges from 0 to <code>x - 1</code>.</div>
+<div class="prototype">DEL.B delay_time bitmask: ...</div>
+<div class="short">Trigger the command up to 16 times at intervals of <code>delay_time</code> ms. Active intervals set in 16-bit <code>bitmask</code>, LSB = immediate.</div>
+<div class="prototype">S: ...</div>
+<div class="short">Place a command onto the stack</div>
+<div class="prototype">S.CLR</div>
+<div class="short">Clear all entries in the stack</div>
+<div class="prototype">S.ALL</div>
+<div class="short">Execute all entries in the stack</div>
+<div class="prototype">S.POP</div>
+<div class="short">Execute the most recent entry</div>
+<div class="prototype">S.L</div>
+<div class="short">Get the length of the stack</div>
+<div class="prototype">Q</div>
+<div class="short">Modify the queue entries</div>
+<div class="prototype">Q.N</div>
+<div class="short">The queue length</div>
+<div class="prototype">Q.AVG</div>
+<div class="short">Return the average of the queue</div>
+<div class="prototype">Q.CLR</div>
+<div class="short">Clear queue</div>
+<div class="prototype">Q.GRW</div>
+<div class="short">Get/set grow state</div>
+<div class="prototype">Q.SUM</div>
+<div class="short">Get sum of elements</div>
+<div class="prototype">Q.MIN</div>
+<div class="short">Get/set minimum value</div>
+<div class="prototype">Q.MAX</div>
+<div class="short">Get/set maximum value</div>
+<div class="prototype">Q.RND</div>
+<div class="short">Get random element/randomize elements</div>
+<div class="prototype">Q.SRT</div>
+<div class="short">Sort all or part of queue</div>
+<div class="prototype">Q.REV</div>
+<div class="short">Reverse queue</div>
+<div class="prototype">Q.SH</div>
+<div class="short">Shift elements in queue</div>
+<div class="prototype">Q.ADD x</div>
+<div class="short">Perform addition on elements in queue</div>
+<div class="prototype">Q.SUB x</div>
+<div class="short">Perform subtraction on elements in queue</div>
+<div class="prototype">Q.MUL x</div>
+<div class="short">Perform multiplication on elements in queue</div>
+<div class="prototype">Q.DIV x</div>
+<div class="short">Perform division on elements in queue</div>
+<div class="prototype">Q.MOD x</div>
+<div class="short">Perform module (<code>%</code>) on elements in queue</div>
+<div class="prototype">Q.I i</div>
+<div class="short">Get/set value of elements at index</div>
+<div class="prototype">Q.2P</div>
+<div class="short">Copy queue to current pattern/copy queue to pattern at index <code>i</code></div>
+<div class="prototype">Q.P2</div>
+<div class="short">Copy current pattern to queue/copy pattern at index <code>i</code> to queue</div>
+<div class="prototype">SEED</div>
+<div class="short">get / set the random number generator seed for all <code>SEED</code> ops</div>
+<div class="prototype">RAND.SEED</div>
+<div class="short">get / set the random number generator seed for <code>R</code>, <code>RRAND</code>, and <code>RAND</code> ops</div>
+<div class="prototype">TOSS.SEED</div>
+<div class="short">get / set the random number generator seed for the <code>TOSS</code> op</div>
+<div class="prototype">PROB.SEED</div>
+<div class="short">get / set the random number generator seed for the <code>PROB</code> mod</div>
+<div class="prototype">DRUNK.SEED</div>
+<div class="short">get / set the random number generator seed for the <code>DRUNK</code> op</div>
+<div class="prototype">P.SEED</div>
+<div class="short">get / set the random number generator seed for the <code>P.RND</code> and <code>PN.RND</code> ops</div>
+<div class="prototype">@</div>
+<div class="short">get or set the current pattern value under the turtle</div>
+<div class="prototype">@X</div>
+<div class="short">get the turtle X coordinate, or set it to x</div>
+<div class="prototype">@Y</div>
+<div class="short">get the turtle Y coordinate, or set it to x</div>
+<div class="prototype">@MOVE x y</div>
+<div class="short">move the turtle x cells in the X axis and y cells in the Y axis</div>
+<div class="prototype">@F x1 y1 x2 y2</div>
+<div class="short">set the turtle's fence to corners x1,y1 and x2,y2</div>
+<div class="prototype">@FX1</div>
+<div class="short">get the left fence line or set it to x</div>
+<div class="prototype">@FX2</div>
+<div class="short">get the right fence line or set it to x</div>
+<div class="prototype">@FY1</div>
+<div class="short">get the top fence line or set it to x</div>
+<div class="prototype">@FY2</div>
+<div class="short">get the bottom fence line or set it to x</div>
+<div class="prototype">@SPEED</div>
+<div class="short">get the speed of the turtle's @STEP in cells per step or set it to x</div>
+<div class="prototype">@DIR</div>
+<div class="short">get the direction of the turtle's @STEP in degrees or set it to x</div>
+<div class="prototype">@STEP</div>
+<div class="short">move <code>@SPEED</code>/100 cells forward in <code>@DIR</code>, triggering <code>@SCRIPT</code> on cell change</div>
+<div class="prototype">@BUMP</div>
+<div class="short">get whether the turtle fence mode is BUMP, or set it to BUMP with 1</div>
+<div class="prototype">@WRAP</div>
+<div class="short">get whether the turtle fence mode is WRAP, or set it to WRAP with 1</div>
+<div class="prototype">@BOUNCE</div>
+<div class="short">get whether the turtle fence mode is BOUNCE, or set it to BOUNCE with 1</div>
+<div class="prototype">@SCRIPT</div>
+<div class="short">get which script runs when the turtle changes cells, or set it to x</div>
+<div class="prototype">@SHOW</div>
+<div class="short">get whether the turtle is displayed on the TRACKER screen, or turn it on or off</div>
+</div>
+</body>
+</html>

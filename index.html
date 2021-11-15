@@ -23,7 +23,7 @@ h1 {
 }
 .links {
     /* style */
-    font-family: 'Roboto Mono', monospace; padding: 0% 0% 3% 0%; font-size: larger; font-weight: bolder; overflow: hidden; padding-top: 1em;
+    font-family: 'Roboto Mono', monospace; font-size: larger; font-weight: bolder; overflow: hidden; padding: 0;
     /* positioning */
     height: 100vh; width: 10vw; position: fixed; top: 0; left: 0;
 }
@@ -37,7 +37,7 @@ h1 {
     overflow-y: scroll; height: 100%; width: 100%; box-sizing: content-box; padding-right: 3em;
 }
 .links-scrollable {
-    overflow-x: hidden; overflow-y: scroll; height: 100%; width: 100%; box-sizing: content-box; white-space: nowrap; padding-top: 1em; padding-right: 1em; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); text-align: right; 
+    overflow-x: hidden; overflow-y: scroll; height: 100%; width: 100%; box-sizing: content-box; white-space: nowrap; padding-right: 0.3em; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); text-align: right; 
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     overflow-y: scroll; 
@@ -61,13 +61,13 @@ h1 {
 </style>
 <script>
 function scrollLinksToTop() {
-    document.getElementById("variables-link").scrollIntoView()
-    console.log("yup")
+    document.getElementById("links-top").scrollIntoView()
 }
 </script>
 </head>
 <body onload="scrollLinksToTop()">
 <div class="links"><div class="links-scrollable">
+&nbsp;
 <span class="section"><a href="#crow" id="crow-link">Crow</a></span>
 <span class="section"><a href="#wslashtape" id="wslashtape-link">W/tape</a></span>
 <span class="section"><a href="#wslashsynth" id="wslashsynth-link">W/synth</a></span>
@@ -99,7 +99,7 @@ function scrollLinksToTop() {
 <span class="section"><a href="#patterns" id="patterns-link">Pat</a></span>
 <span class="section"><a href="#hardware" id="hardware-link">H/W</a></span>
 <span class="section"><a href="#variables" id="variables-link">Var</a></span>
-</div></div>
+<span id="links-top">&nbsp;</span></div></div>
 <div class="content"><div class="content-scrollable">
 <h1 id="variables">Variables</h1><div class="prototype">A</div>
 <div class="short">get / set the variable <code>A</code>, default <code>1</code></div>

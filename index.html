@@ -23,7 +23,7 @@ h1 {
 }
 .links {
     /* style */
-    font-family: 'Roboto Mono', monospace; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); text-align: right; padding: 1% 1% 3% 1%; font-size: larger; font-weight: bolder;
+    font-family: 'Roboto Mono', monospace; padding: 0% 0% 3% 0%; font-size: larger; font-weight: bolder; overflow: hidden; padding-top: 1em;
     /* positioning */
     height: 100vh; width: 10vw; position: fixed; top: 0; left: 0;
 }
@@ -33,8 +33,17 @@ h1 {
     /* positioning */
     height: 100vh; width: 85vw; position: fixed; top: 0; left: 10vw;
 }
-.scrollable {
-    overflow-y: scroll; height: 100%; width: 100%; padding-right: 3em; box-sizing: content-box;
+.content-scrollable {
+    overflow-y: scroll; height: 100%; width: 100%; box-sizing: content-box; padding-right: 3em;
+}
+.links-scrollable {
+    overflow-x: hidden; overflow-y: scroll; height: 100%; width: 100%; box-sizing: content-box; white-space: nowrap; padding-top: 1em; padding-right: 1em; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); text-align: right; 
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+.links-scrollable::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
 }
 .fixturtle {
     /* I suffer for my art */
@@ -50,21 +59,48 @@ h1 {
     font-family: 'Roboto', sans-serif; font-size: smaller; letter-spacing: -0.05em;
 }
 </style>
+<script>
+function scrollLinksToTop() {
+    document.getElementById("variables-link").scrollIntoView()
+    console.log("yup")
+}
+</script>
 </head>
-<body>
-<div class="links"><span class="section"><a href="#turtle"><span class="fixturtle">🐢</span></a></span>
-<span class="section"><a href="#seed">Seed</a></span>
-<span class="section"><a href="#queue">Queue</a></span>
-<span class="section"><a href="#stack">Stack</a></span>
-<span class="section"><a href="#delay">Del</a></span>
-<span class="section"><a href="#metronome">Metro</a></span>
-<span class="section"><a href="#maths">Math</a></span>
-<span class="section"><a href="#controlflow">Flow</a></span>
-<span class="section"><a href="#patterns">Pat</a></span>
-<span class="section"><a href="#hardware">H/W</a></span>
-<span class="section"><a href="#variables">Var</a></span>
-</div>
-<div class="content"><div class="scrollable">
+<body onload="scrollLinksToTop()">
+<div class="links"><div class="links-scrollable">
+<span class="section"><a href="#crow" id="crow-link">Crow</a></span>
+<span class="section"><a href="#wslashtape" id="wslashtape-link">W/tape</a></span>
+<span class="section"><a href="#wslashsynth" id="wslashsynth-link">W/synth</a></span>
+<span class="section"><a href="#wslashdelay" id="wslashdelay-link">W/delay</a></span>
+<span class="section"><a href="#disting" id="disting-link">Disting</a></span>
+<span class="section"><a href="#telex_o" id="telex_o-link">TXo</a></span>
+<span class="section"><a href="#telex_i" id="telex_i-link">TXi</a></span>
+<span class="section"><a href="#matrixarchate" id="matrixarchate-link">Matrix</a></span>
+<span class="section"><a href="#fader" id="fader-link">Fader</a></span>
+<span class="section"><a href="#er301" id="er301-link">ER-301</a></span>
+<span class="section"><a href="#wslash" id="wslash-link">W/</a></span>
+<span class="section"><a href="#justfriends" id="justfriends-link">Friends</a></span>
+<span class="section"><a href="#orca" id="orca-link">Orca</a></span>
+<span class="section"><a href="#earthsea" id="earthsea-link">Earth</a></span>
+<span class="section"><a href="#meadowphysics" id="meadowphysics-link">Meadow</a></span>
+<span class="section"><a href="#whitewhale" id="whitewhale-link">Whale</a></span>
+<span class="section"><a href="#ansible" id="ansible-link">Ansible</a></span>
+<span class="section"><a href="#i2c" id="i2c-link">I2C</a></span>
+<span class="section"><a href="#midi_in" id="midi_in-link">MIDI</a></span>
+<span class="section"><a href="#grid" id="grid-link">Grid</a></span>
+<span class="section"><a href="#turtle" id="turtle-link"><span class="fixturtle">&nbsp;🐢&nbsp;&nbsp;</span></a></span>
+<span class="section"><a href="#seed" id="seed-link">Seed</a></span>
+<span class="section"><a href="#queue" id="queue-link">Queue</a></span>
+<span class="section"><a href="#stack" id="stack-link">Stack</a></span>
+<span class="section"><a href="#delay" id="delay-link">Del</a></span>
+<span class="section"><a href="#metronome" id="metronome-link">Metro</a></span>
+<span class="section"><a href="#maths" id="maths-link">Math</a></span>
+<span class="section"><a href="#controlflow" id="controlflow-link">Flow</a></span>
+<span class="section"><a href="#patterns" id="patterns-link">Pat</a></span>
+<span class="section"><a href="#hardware" id="hardware-link">H/W</a></span>
+<span class="section"><a href="#variables" id="variables-link">Var</a></span>
+</div></div>
+<div class="content"><div class="content-scrollable">
 <h1 id="variables">Variables</h1><div class="prototype">A</div>
 <div class="short">get / set the variable <code>A</code>, default <code>1</code></div>
 <div class="prototype">B</div>
@@ -588,6 +624,984 @@ setting will give it a new value for the next read</div>
 <div class="short">get which script runs when the turtle changes cells, or set it to x</div>
 <div class="prototype">@SHOW</div>
 <div class="short">get whether the turtle is displayed on the TRACKER screen, or turn it on or off</div>
+<h1 id="grid">Grid</h1><div class="prototype">G.RST</div>
+<div class="short">full grid reset</div>
+<div class="prototype">G.CLR</div>
+<div class="short">clear all LEDs</div>
+<div class="prototype">G.DIM level</div>
+<div class="short">set dim level</div>
+<div class="prototype">G.ROTATE x</div>
+<div class="short">set grid rotation</div>
+<div class="prototype">G.KEY x y action</div>
+<div class="short">emulate grid press</div>
+<div class="prototype">G.GRP</div>
+<div class="short">get/set current group</div>
+<div class="prototype">G.GRP.EN id</div>
+<div class="short">enable/disable group or check if enabled</div>
+<div class="prototype">G.GRP.RST id</div>
+<div class="short">reset all group controls</div>
+<div class="prototype">G.GRP.SW id</div>
+<div class="short">switch groups</div>
+<div class="prototype">G.GRP.SC id</div>
+<div class="short">get/set group script</div>
+<div class="prototype">G.GRPI</div>
+<div class="short">get last group</div>
+<div class="prototype">G.LED x y</div>
+<div class="short">get/set LED</div>
+<div class="prototype">G.LED.C x y</div>
+<div class="short">clear LED</div>
+<div class="prototype">G.REC x y w h fill border</div>
+<div class="short">draw rectangle</div>
+<div class="prototype">G.RCT x1 y1 x2 y2 fill border</div>
+<div class="short">draw rectangle</div>
+<div class="prototype">G.BTN id x y w h type level script</div>
+<div class="short">initialize button</div>
+<div class="prototype">G.GBT group id x y w h type level script</div>
+<div class="short">initialize button in group</div>
+<div class="prototype">G.BTX id x y w h type level script columns rows</div>
+<div class="short">initialize multiple buttons</div>
+<div class="prototype">G.GBX group id x y w h type level script columns rows</div>
+<div class="short">initialize multiple buttons in group</div>
+<div class="prototype">G.BTN.EN id</div>
+<div class="short">enable/disable button or check if enabled</div>
+<div class="prototype">G.BTN.X id</div>
+<div class="short">get/set button x coordinate</div>
+<div class="prototype">G.BTN.Y id</div>
+<div class="short">get/set button y coordinate</div>
+<div class="prototype">G.BTN.V id</div>
+<div class="short">get/set button value</div>
+<div class="prototype">G.BTN.L id</div>
+<div class="short">get/set button level</div>
+<div class="prototype">G.BTNI</div>
+<div class="short">id of last pressed button</div>
+<div class="prototype">G.BTNX</div>
+<div class="short">get/set x of last pressed button</div>
+<div class="prototype">G.BTNY</div>
+<div class="short">get/set y of last pressed button</div>
+<div class="prototype">G.BTNV</div>
+<div class="short">get/set value of last pressed button</div>
+<div class="prototype">G.BTNL</div>
+<div class="short">get/set level of last pressed button</div>
+<div class="prototype">G.BTN.SW id</div>
+<div class="short">switch button</div>
+<div class="prototype">G.BTN.PR id action</div>
+<div class="short">emulate button press/release</div>
+<div class="prototype">G.GBTN.V group value</div>
+<div class="short">set value for group buttons</div>
+<div class="prototype">G.GBTN.L group odd_level even_level</div>
+<div class="short">set level for group buttons</div>
+<div class="prototype">G.GBTN.C group</div>
+<div class="short">get count of currently pressed</div>
+<div class="prototype">G.GBTN.I group index</div>
+<div class="short">get id of pressed button</div>
+<div class="prototype">G.GBTN.W group</div>
+<div class="short">get button block width</div>
+<div class="prototype">G.GBTN.H group</div>
+<div class="short">get button block height</div>
+<div class="prototype">G.GBTN.X1 group</div>
+<div class="short">get leftmost pressed x</div>
+<div class="prototype">G.GBTN.X2 group</div>
+<div class="short">get rightmost pressed x</div>
+<div class="prototype">G.GBTN.Y1 group</div>
+<div class="short">get highest pressed y</div>
+<div class="prototype">G.GBTN.Y2 group</div>
+<div class="short">get lowest pressed y</div>
+<div class="prototype">G.FDR id x y w h type level script</div>
+<div class="short">initialize fader</div>
+<div class="prototype">G.GFD grp id x y w h type level script</div>
+<div class="short">initialize fader in group</div>
+<div class="prototype">G.FDX id x y w h type level script columns rows</div>
+<div class="short">initialize multiple faders</div>
+<div class="prototype">G.GFX group id x y w h type level script columns rows</div>
+<div class="short">initialize multiple faders in group</div>
+<div class="prototype">G.FDR.EN id</div>
+<div class="short">enable/disable fader or check if enabled</div>
+<div class="prototype">G.FDR.X id</div>
+<div class="short">get/set fader x coordinate</div>
+<div class="prototype">G.FDR.Y id</div>
+<div class="short">get/set fader y coordinate</div>
+<div class="prototype">G.FDR.N id</div>
+<div class="short">get/set fader value</div>
+<div class="prototype">G.FDR.V id</div>
+<div class="short">get/set scaled fader value</div>
+<div class="prototype">G.FDR.L id</div>
+<div class="short">get/set fader level</div>
+<div class="prototype">G.FDRI</div>
+<div class="short">id of last pressed fader</div>
+<div class="prototype">G.FDRX</div>
+<div class="short">get/set x of last pressed fader</div>
+<div class="prototype">G.FDRY</div>
+<div class="short">get/set y of last pressed fader</div>
+<div class="prototype">G.FDRN</div>
+<div class="short">get/set value of last pressed fader</div>
+<div class="prototype">G.FDRV</div>
+<div class="short">get/set scaled value of last pressed fader</div>
+<div class="prototype">G.FDRL</div>
+<div class="short">get/set level of last pressed fader</div>
+<div class="prototype">G.FDR.PR id value</div>
+<div class="short">emulate fader press</div>
+<div class="prototype">G.GFDR.N group value</div>
+<div class="short">set value for group faders</div>
+<div class="prototype">G.GFDR.V group value</div>
+<div class="short">set scaled value for group faders</div>
+<div class="prototype">G.GFDR.L group odd_level even_level</div>
+<div class="short">set level for group faders</div>
+<div class="prototype">G.GFDR.RN group min max</div>
+<div class="short">set range for group faders</div>
+<h1 id="midi_in">MIDI In</h1><div class="prototype">MI.$ x</div>
+<div class="short">assign MIDI event type <code>x</code> to script <code>y</code></div>
+<div class="prototype">MI.LE</div>
+<div class="short">get the latest event type</div>
+<div class="prototype">MI.LCH</div>
+<div class="short">get the latest channel (1..16)</div>
+<div class="prototype">MI.LN</div>
+<div class="short">get the latest Note On (0..127)</div>
+<div class="prototype">MI.LNV</div>
+<div class="short">get the latest Note On scaled to teletype range (shortcut for <code>N MI.LN</code>)</div>
+<div class="prototype">MI.LV</div>
+<div class="short">get the latest velocity (0..127)</div>
+<div class="prototype">MI.LVV</div>
+<div class="short">get the latest velocity scaled to 0..16383 range (0..+10V)</div>
+<div class="prototype">MI.LO</div>
+<div class="short">get the latest Note Off (0..127)</div>
+<div class="prototype">MI.LC</div>
+<div class="short">get the latest controller number (0..127)</div>
+<div class="prototype">MI.LCC</div>
+<div class="short">get the latest controller value (0..127)</div>
+<div class="prototype">MI.LCCV</div>
+<div class="short">get the latest controller value scaled to 0..16383 range (0..+10V)</div>
+<div class="prototype">MI.NL</div>
+<div class="short">get the number of Note On events</div>
+<div class="prototype">MI.NCH</div>
+<div class="short">get the Note On event channel (1..16) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.N</div>
+<div class="short">get the Note On (0..127) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.NV</div>
+<div class="short">get the Note On scaled to 0..+10V range at index specified by variable <code>I</code></div>
+<div class="prototype">MI.V</div>
+<div class="short">get the velocity (0..127) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.VV</div>
+<div class="short">get the velocity scaled to 0..10V range at index specified by variable <code>I</code></div>
+<div class="prototype">MI.OL</div>
+<div class="short">get the number of Note Off events</div>
+<div class="prototype">MI.OCH</div>
+<div class="short">get the Note Off event channel (1..16) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.O</div>
+<div class="short">get the Note Off (0..127) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.CL</div>
+<div class="short">get the number of controller events</div>
+<div class="prototype">MI.CCH</div>
+<div class="short">get the controller event channel (1..16) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.C</div>
+<div class="short">get the controller number (0..127) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.CC</div>
+<div class="short">get the controller value (0..127) at index specified by variable <code>I</code></div>
+<div class="prototype">MI.CCV</div>
+<div class="short">get the controller value scaled to 0..+10V range at index specified by variable <code>I</code></div>
+<div class="prototype">MI.CLKD</div>
+<div class="short">set clock divider to <code>x</code> (1-24) or get the current divider</div>
+<div class="prototype">MI.CLKR</div>
+<div class="short">reset clock counter</div>
+<h1 id="i2c">Generic I2C</h1><div class="prototype">IIA</div>
+<div class="short">Set I2C address or get the currently selected address</div>
+<div class="prototype">IIS cmd</div>
+<div class="short">Execute the specified command</div>
+<div class="prototype">IIS1 cmd value</div>
+<div class="short">Execute the specified command with 1 parameter</div>
+<div class="prototype">IIS2 cmd value1 value2</div>
+<div class="short">Execute the specified command with 2 parameters</div>
+<div class="prototype">IIS3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified command with 3 parameters</div>
+<div class="prototype">IISB1 cmd value</div>
+<div class="short">Execute the specified command with 1 byte parameter</div>
+<div class="prototype">IISB2 cmd value1 value2</div>
+<div class="short">Execute the specified command with 2 byte parameters</div>
+<div class="prototype">IISB3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified command with 3 byte parameters</div>
+<div class="prototype">IIQ cmd</div>
+<div class="short">Execute the specified query and get a value back</div>
+<div class="prototype">IIQ1 cmd value</div>
+<div class="short">Execute the specified query with 1 parameter and get a value back</div>
+<div class="prototype">IIQ2 cmd value1 value2</div>
+<div class="short">Execute the specified query with 2 parameters and get a value back</div>
+<div class="prototype">IIQ3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified query with 3 parameters and get a value back</div>
+<div class="prototype">IIQB1 cmd value</div>
+<div class="short">Execute the specified query with 1 byte parameter and get a value back</div>
+<div class="prototype">IIQB2 cmd value1 value2</div>
+<div class="short">Execute the specified query with 2 byte parameters and get a value back</div>
+<div class="prototype">IIQB3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified query with 3 byte parameters and get a value back</div>
+<div class="prototype">IIB cmd</div>
+<div class="short">Execute the specified query and get a byte value back</div>
+<div class="prototype">IIB1 cmd value</div>
+<div class="short">Execute the specified query with 1 parameter and get a byte value back</div>
+<div class="prototype">IIB2 cmd value1 value2</div>
+<div class="short">Execute the specified query with 2 parameters and get a byte value back</div>
+<div class="prototype">IIB3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified query with 3 parameters and get a byte value back</div>
+<div class="prototype">IIBB1 cmd value</div>
+<div class="short">Execute the specified query with 1 byte parameter and get a byte value back</div>
+<div class="prototype">IIBB2 cmd value1 value2</div>
+<div class="short">Execute the specified query with 2 byte parameters and get a byte value back</div>
+<div class="prototype">IIBB3 cmd value1 value2 value3</div>
+<div class="short">Execute the specified query with 3 byte parameters and get a byte value back</div>
+<h1 id="ansible">Ansible</h1><div class="prototype">ANS.G.LED x y</div>
+<div class="short">get grid LED buffer at position <code>x</code>, <code>y</code></div>
+<div class="prototype">ANS.G x y</div>
+<div class="short">get/set grid key on/off state (<code>z</code>) at position <code>x</code>, <code>y</code></div>
+<div class="prototype">ANS.G.P x y</div>
+<div class="short">simulate grid key press at position (<code>x</code>, <code>y</code>)</div>
+<div class="prototype">ANS.A.LED n x</div>
+<div class="short">read arc LED buffer for ring <code>n</code>, LED <code>x</code> clockwise from north</div>
+<div class="prototype">ANS.A</div>
+<div class="short">send arc encoder event for ring <code>n</code>, delta <code>d</code></div>
+<div class="prototype">ANS.APP</div>
+<div class="short">get/set active app</div>
+<div class="prototype">KR.PRE</div>
+<div class="short">return current preset / load preset <code>x</code></div>
+<div class="prototype">KR.PERIOD</div>
+<div class="short">get/set internal clock period</div>
+<div class="prototype">KR.PAT</div>
+<div class="short">get/set current pattern</div>
+<div class="prototype">KR.SCALE</div>
+<div class="short">get/set current scale</div>
+<div class="prototype">KR.POS x y</div>
+<div class="short">get/set position <code>z</code> for track <code>z</code>, parameter <code>y</code></div>
+<div class="prototype">KR.L.ST x y</div>
+<div class="short">get loop start for track <code>x</code>, parameter <code>y</code> / set to <code>z</code></div>
+<div class="prototype">KR.L.LEN x y</div>
+<div class="short">get length of track <code>x</code>, parameter <code>y</code> / set to <code>z</code></div>
+<div class="prototype">KR.RES x y</div>
+<div class="short">reset position to loop start for track <code>x</code>, parameter <code>y</code></div>
+<div class="prototype">KR.CV x </div>
+<div class="short">get the current CV value for channel <code>x</code></div>
+<div class="prototype">KR.MUTE x</div>
+<div class="short">get/set mute state for channel <code>x</code> (<code>1</code> = muted, <code>0</code> = unmuted)</div>
+<div class="prototype">KR.TMUTE x</div>
+<div class="short">toggle mute state for channel <code>x</code></div>
+<div class="prototype">KR.CLK x</div>
+<div class="short">advance the clock for channel <code>x</code> (channel must have teletype clocking enabled)</div>
+<div class="prototype">KR.PG</div>
+<div class="short">get/set the active page</div>
+<div class="prototype">KR.CUE</div>
+<div class="short">get/set the cued pattern</div>
+<div class="prototype">KR.DIR</div>
+<div class="short">get/set the step direction</div>
+<div class="prototype">KR.DUR x </div>
+<div class="short">get the current duration value for channel <code>x</code></div>
+<div class="prototype">ME.PRE</div>
+<div class="short">return current preset / load preset <code>x</code></div>
+<div class="prototype">ME.SCALE</div>
+<div class="short">get/set current scale</div>
+<div class="prototype">ME.PERIOD</div>
+<div class="short">get/set internal clock period</div>
+<div class="prototype">ME.STOP x</div>
+<div class="short">stop channel <code>x</code> (<code>0</code> = all)</div>
+<div class="prototype">ME.RES x</div>
+<div class="short">reset channel <code>x</code> (<code>0</code> = all), also used as "start"</div>
+<div class="prototype">ME.CV x</div>
+<div class="short">get the current CV value for channel <code>x</code></div>
+<div class="prototype">LV.PRE</div>
+<div class="short">return current preset / load preset <code>x</code></div>
+<div class="prototype">LV.RES x</div>
+<div class="short">reset, <code>0</code> for soft reset (on next ext. clock), <code>1</code> for hard reset</div>
+<div class="prototype">LV.POS</div>
+<div class="short">get/set current position</div>
+<div class="prototype">LV.L.ST</div>
+<div class="short">get/set loop start</div>
+<div class="prototype">LV.L.LEN</div>
+<div class="short">get/set loop length</div>
+<div class="prototype">LV.L.DIR</div>
+<div class="short">get/set loop direction</div>
+<div class="prototype">LV.CV x</div>
+<div class="short">get the current CV value for channel <code>x</code></div>
+<div class="prototype">CY.PRE</div>
+<div class="short">return current preset / load preset <code>x</code></div>
+<div class="prototype">CY.RES x</div>
+<div class="short">reset channel <code>x</code> (<code>0</code> = all)</div>
+<div class="prototype">CY.POS x</div>
+<div class="short">get / set position of channel <code>x</code> (<code>x = 0</code> to set all), position between <code>0-255</code></div>
+<div class="prototype">CY.REV x</div>
+<div class="short">reverse channel <code>x</code> (<code>0</code> = all)</div>
+<div class="prototype">CY.CV x</div>
+<div class="short">get the current CV value for channel <code>x</code></div>
+<div class="prototype">MID.SLEW t</div>
+<div class="short">set pitch slew time in ms (applies to all allocation styles except FIXED)</div>
+<div class="prototype">MID.SHIFT o</div>
+<div class="short">shift pitch CV by standard Teletype pitch value (e.g. <code>N 6</code>, <code>V -1</code>, etc)</div>
+<div class="prototype">ARP.HLD h</div>
+<div class="short"><code>0</code> disables key hold mode, other values enable</div>
+<div class="prototype">ARP.STY y</div>
+<div class="short">set base arp style [0-7]</div>
+<div class="prototype">ARP.GT v g</div>
+<div class="short">set voice gate length [0-127], scaled/synced to course divisions of voice clock</div>
+<div class="prototype">ARP.SLEW v t</div>
+<div class="short">set voice slew time in ms</div>
+<div class="prototype">ARP.RPT v n s</div>
+<div class="short">set voice pattern repeat, <code>n</code> times [0-8], shifted by <code>s</code> semitones [-24, 24]</div>
+<div class="prototype">ARP.DIV v d</div>
+<div class="short">set voice clock divisor (euclidean length), range [1-32]</div>
+<div class="prototype">ARP.FIL v f</div>
+<div class="short">set voice euclidean fill, use 1 for straight clock division, range [1-32]</div>
+<div class="prototype">ARP.ROT v r</div>
+<div class="short">set voice euclidean rotation, range [-32, 32]</div>
+<div class="prototype">ARP.ER v f d r</div>
+<div class="short">set all euclidean rhythm</div>
+<div class="prototype">ARP.RES v</div>
+<div class="short">reset voice clock/pattern on next base clock tick</div>
+<div class="prototype">ARP.SHIFT v o</div>
+<div class="short">shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)</div>
+<h1 id="whitewhale">Whitewhale</h1><div class="prototype">WW.PRESET x</div>
+<div class="short">Recall preset (0-7)</div>
+<div class="prototype">WW.POS x</div>
+<div class="short">Cut to position (0-15)</div>
+<div class="prototype">WW.SYNC x</div>
+<div class="short">Cut to position (0-15) and hard-sync the clock (if clocked internally)</div>
+<div class="prototype">WW.START x</div>
+<div class="short">Set the loop start position (0-15)</div>
+<div class="prototype">WW.END x</div>
+<div class="short">Set the loop end position (0-15)</div>
+<div class="prototype">WW.PMODE x</div>
+<div class="short">Set the loop play mode (0-5)</div>
+<div class="prototype">WW.PATTERN x</div>
+<div class="short">Change pattern (0-15)</div>
+<div class="prototype">WW.QPATTERN x</div>
+<div class="short">Change pattern (0-15) after current pattern ends</div>
+<div class="prototype">WW.MUTE1 x</div>
+<div class="short">Mute trigger 1 (0 = on, 1 = mute)</div>
+<div class="prototype">WW.MUTE2 x</div>
+<div class="short">Mute trigger 2 (0 = on, 1 = mute)</div>
+<div class="prototype">WW.MUTE3 x</div>
+<div class="short">Mute trigger 3 (0 = on, 1 = mute)</div>
+<div class="prototype">WW.MUTE4 x</div>
+<div class="short">Mute trigger 4 (0 = on, 1 = mute)</div>
+<div class="prototype">WW.MUTEA x</div>
+<div class="short">Mute CV A (0 = on, 1 = mute)</div>
+<div class="prototype">WW.MUTEB x</div>
+<div class="short">Mute CV B (0 = on, 1 = mute)</div>
+<h1 id="meadowphysics">Meadowphysics</h1><div class="prototype">MP.PRESET x</div>
+<div class="short">set Meadowphysics to preset <code>x</code> (indexed from <code>0</code>)</div>
+<div class="prototype">MP.RESET x</div>
+<div class="short">reset countdown for channel <code>x</code> (<code>0</code> = all, <code>1-8</code> = individual channels)</div>
+<div class="prototype">MP.STOP x</div>
+<div class="short">reset channel <code>x</code> (<code>0</code> = all, <code>1-8</code> = individual channels)</div>
+<h1 id="earthsea">Earthsea</h1><div class="prototype">ES.PRESET x</div>
+<div class="short">Recall preset <code>x</code> (0-7)</div>
+<div class="prototype">ES.MODE x</div>
+<div class="short">Set pattern clock mode. (0=normal, 1=II clock)</div>
+<div class="prototype">ES.CLOCK x</div>
+<div class="short">If II clocked, next pattern event</div>
+<div class="prototype">ES.RESET x</div>
+<div class="short">Reset pattern to start (and start playing)</div>
+<div class="prototype">ES.PATTERN x</div>
+<div class="short">Select playing pattern (0-15)</div>
+<div class="prototype">ES.TRANS x</div>
+<div class="short">Transpose the current pattern</div>
+<div class="prototype">ES.STOP x</div>
+<div class="short">Stop pattern playback.</div>
+<div class="prototype">ES.TRIPLE x</div>
+<div class="short">Recall triple shape (1-4)</div>
+<div class="prototype">ES.MAGIC x</div>
+<div class="short">Magic shape (1= halfspeed, 2=doublespeed, 3=linearize)</div>
+<div class="prototype">ES.CV x </div>
+<div class="short">get the current CV value for channel <code>x</code></div>
+<h1 id="orca">Orca</h1><div class="prototype">OR.CLK x</div>
+<div class="short">Advance track <code>x</code> (<code>1-4</code>)</div>
+<div class="prototype">OR.RST x</div>
+<div class="short">Reset track <code>x</code> (<code>1-4</code>)</div>
+<div class="prototype">OR.GRST x</div>
+<div class="short">Global reset (<code>x</code> can be any value)</div>
+<div class="prototype">OR.TRK x</div>
+<div class="short">Choose track <code>x</code> (<code>1-4</code>) to be used by <code>OR.DIV</code>, <code>OR.PHASE</code>, <code>OR.WGT</code> or <code>OR.MUTE</code></div>
+<div class="prototype">OR.DIV x</div>
+<div class="short">Set divisor for selected track to <code>x</code> (<code>1-16</code>)</div>
+<div class="prototype">OR.PHASE x</div>
+<div class="short">Set phase for selected track to <code>x</code> (<code>0-16</code>)</div>
+<div class="prototype">OR.WGT x</div>
+<div class="short">Set weight for selected track to <code>x</code> (<code>1-8</code>)</div>
+<div class="prototype">OR.MUTE x</div>
+<div class="short">Mute trigger selected by <code>OR.TRK</code> (<code>0</code> = on, <code>1</code> = mute)</div>
+<div class="prototype">OR.SCALE x</div>
+<div class="short">Select scale <code>x</code> (<code>1-16</code>)</div>
+<div class="prototype">OR.BANK x</div>
+<div class="short">Select preset bank <code>x</code> (<code>1-8</code>)</div>
+<div class="prototype">OR.PRESET x</div>
+<div class="short">Select preset <code>x</code> (<code>1-8</code>)</div>
+<div class="prototype">OR.RELOAD x</div>
+<div class="short">Reload preset or bank (<code>0</code> - current preset, <code>1</code> - current bank, <code>2</code> - all banks)</div>
+<div class="prototype">OR.ROTS x</div>
+<div class="short">Rotate scales by <code>x</code> (<code>1-15</code>)</div>
+<div class="prototype">OR.ROTW x</div>
+<div class="short">Rotate weights by <code>x</code> (<code>1-3</code>)</div>
+<div class="prototype">OR.CVA x</div>
+<div class="short">Select tracks for CV A where <code>x</code> is a binary number representing the tracks</div>
+<div class="prototype">OR.CVB x</div>
+<div class="short">Select tracks for CV B where <code>x</code> is a binary number representing the tracks</div>
+<h1 id="justfriends">Just Friends</h1><div class="prototype">JF.ADDR x</div>
+<div class="short">Sets JF II address (<code>1</code> = primary, <code>2</code> = secondary). Use with only one JF on the bus! Saves to JF internal memory, so only one-time config is needed.</div>
+<div class="prototype">JF.SEL x</div>
+<div class="short">Sets target JF unit (<code>1</code> = primary, <code>2</code> = secondary).</div>
+<div class="prototype">JF0: ...</div>
+<div class="short">Send following JF OPs to both units starting with selected unit.</div>
+<div class="prototype">JF1: ...</div>
+<div class="short">Send following JF OPs to unit 1 ignoring the currently selected unit.</div>
+<div class="prototype">JF2: ...</div>
+<div class="short">Send following JF OPs to unit 2 ignoring the currently selected unit.</div>
+<div class="prototype">JF.RAMP</div>
+<div class="short">Gets value of RAMP knob.</div>
+<div class="prototype">JF.CURVE</div>
+<div class="short">Gets value of CURVE knob.</div>
+<div class="prototype">JF.FM</div>
+<div class="short">Gets value of FM knob.</div>
+<div class="prototype">JF.INTONE</div>
+<div class="short">Gets value of INTONE knob and CV offset.</div>
+<div class="prototype">JF.TIME</div>
+<div class="short">Gets value of TIME knob and CV offset.</div>
+<div class="prototype">JF.SPEED</div>
+<div class="short">Gets value of SPEED switch (<code>1</code> = sound, <code>0</code> = shape).</div>
+<div class="prototype">JF.TSC</div>
+<div class="short">Gets value of MODE switch (<code>0</code> = transient, <code>1</code> = sustain, <code>2</code> = cycle).</div>
+<div class="prototype">JF.TR x y</div>
+<div class="short">Simulate a TRIGGER input. <code>x</code> is channel (<code>0</code> = all primary JF channels, <code>1..6</code> = primary JF, <code>7..12</code> = secondary JF, <code>-1</code> = all channels both JF) and y is state (<code>0</code> or <code>1</code>)</div>
+<div class="prototype">JF.RMODE x</div>
+<div class="short">Set the RUN state of Just Friends when no physical jack is present. (<code>0</code> = run off, non-zero = run on)</div>
+<div class="prototype">JF.RUN x</div>
+<div class="short">Send a 'voltage' to the RUN input. Requires <code>JF.RMODE 1</code> to have been executed, or a physical cable in JF's input. Thus Just Friend's RUN modes are accessible without needing a physical cable & control voltage to set the RUN parameter. use <code>JF.RUN V x</code> to set to <code>x</code> volts. The expected range is V -5 to V 5</div>
+<div class="prototype">JF.SHIFT x</div>
+<div class="short">Shifts the transposition of Just Friends, regardless of speed setting. Shifting by V 1 doubles the frequency in sound, or doubles the rate in shape. <code>x</code> = pitch, use <code>N x</code> for semitones, or <code>V y</code> for octaves.</div>
+<div class="prototype">JF.VTR x y</div>
+<div class="short">Like <code>JF.TR</code> with added volume control. Velocity is scaled with volts, so try <code>V 5</code> for an output trigger of 5 volts. Channels remember their latest velocity setting and apply it regardless of TRIGGER origin (digital or physical). <code>x</code> = channel, <code>0</code> sets all channels. <code>y</code> = velocity, amplitude of output in volts. eg <code>JF.VTR 1 V 4</code>.</div>
+<div class="prototype">JF.TUNE x y z</div>
+<div class="short">Adjust the tuning ratios used by the INTONE control. <code>x</code> = channel, <code>y</code> = numerator (set the multiplier for the tuning ratio), <code>z</code> = denominator (set the divisor for the tuning ratio). <code>JF.TUNE 0 0 0</code> resets to default ratios.</div>
+<div class="prototype">JF.MODE x</div>
+<div class="short">Set the current choice of standard functionality, or Just Type alternate modes (Speed switch to Sound for Synth, Shape for Geode). You'll likely want to put JF.MODE x in your Teletype INIT scripts. <code>x</code> = nonzero activates alternative modes. <code>0</code> restores normal.</div>
+<div class="prototype">JF.VOX x y z</div>
+<div class="short">Synth mode: create a note at the specified channel, of the defined pitch & velocity. All channels can be set simultaneously with a chan value of 0. <code>x</code> = channel, <code>y</code> = pitch relative to C3, <code>z</code> = velocity (like <code>JF.VTR</code>). Geode mode: Create a stream of rhythmic envelopes on the named channel. <code>x</code> = channel, <code>y</code> = division, <code>z</code> = number of repeats.</div>
+<div class="prototype">JF.NOTE x y</div>
+<div class="short">Synth: polyphonically allocated note sequencing. Works as JF.VOX with chan selected automatically. Free voices will be taken first. If all voices are busy, will steal from the voice which has been active the longest. <code>x</code> = pitch relative to C3, <code>y</code> = velocity. Geode: works as JF.VOX with dynamic allocation of channel. Assigns the rhythmic stream to the oldest unused channel, or if all are busy, the longest running channel. <code>x</code> = division, <code>y</code> = number of repeats.</div>
+<div class="prototype">JF.POLY x y</div>
+<div class="short">As <code>JF.NOTE</code> but across dual JF. Switches between primary and secondary units every 6 notes or until reset using <code>JF.POLY.RESET</code>.</div>
+<div class="prototype">JF.POLY.RESET</div>
+<div class="short">Resets <code>JF.POLY</code> note count.</div>
+<div class="prototype">JF.PITCH x y</div>
+<div class="short">Change pitch without retriggering. <code>x</code> = channel, <code>y</code> = pitch relative to C3.</div>
+<div class="prototype">JF.GOD x</div>
+<div class="short">Redefines C3 to align with the 'God' note. <code>x</code> = <code>0</code> sets A to 440, <code>x</code> = <code>1</code> sets A to 432.</div>
+<div class="prototype">JF.TICK x</div>
+<div class="short">Sets the underlying timebase of the Geode. <code>x</code> = clock. 0 resets the timebase to the start of measure. 1 to 48 shall be sent repetitively. The value representing ticks per measure. 49 to 255 sets beats-per-minute and resets the timebase to start of measure.</div>
+<div class="prototype">JF.QT x</div>
+<div class="short">When non-zero, all events are queued & delayed until the next quantize event occurs. Using values that don't align with the division of rhythmic streams will cause irregular patterns to unfold. Set to 0 to deactivate quantization. <code>x</code> = division, 0 deactivates quantization, 1 to 32 sets the subdivision & activates quantization.</div>
+<h1 id="wslash">W/</h1><div class="prototype">WS.PLAY x</div>
+<div class="short">Set playback state and direction. <code>0</code> stops playback. <code>1</code> sets forward motion, while <code>-1</code> plays in reverse</div>
+<div class="prototype">WS.REC x</div>
+<div class="short">Set recording mode. <code>0</code> is playback only. <code>1</code> sets overdub mode for additive recording. <code>-1</code> sets overwrite mode to replace the tape with your input</div>
+<div class="prototype">WS.CUE x</div>
+<div class="short">Go to a cuepoint relative to the playhead position. <code>0</code> retriggers the current location. <code>1</code> jumps to the next cue forward. <code>-1</code> jumps to the previous cue in the reverse. These actions are relative to playback direction such that <code>0</code> always retriggers the most recently passed location</div>
+<div class="prototype">WS.LOOP x</div>
+<div class="short">Set the loop state on/off. <code>0</code> is off. Any other value turns loop on</div>
+<h1 id="er301">ER-301</h1><div class="prototype">SC.TR x y</div>
+<div class="short">Set trigger output for the ER-301 virtual output x to y (0-1)</div>
+<div class="prototype">SC.TR.POL x y</div>
+<div class="short">Set polarity of trigger for the ER-301 virtual output x to y (0-1)</div>
+<div class="prototype">SC.TR.TIME x y</div>
+<div class="short">Set the pulse time for the ER-301 virtual trigger <code>x</code> to <code>y</code> in ms</div>
+<div class="prototype">SC.TR.TOG x</div>
+<div class="short">Flip the state for the ER-301 virtual trigger output <code>x</code></div>
+<div class="prototype">SC.TR.PULSE x</div>
+<div class="short">Pulse the ER-301 virtual trigger output <code>x</code></div>
+<div class="prototype">SC.CV x y</div>
+<div class="short">CV target value for the ER-301 virtual output <code>x</code> to value <code>y</code></div>
+<div class="prototype">SC.CV.OFF x y</div>
+<div class="short">CV offset added to the ER-301 virtual output <code>x</code></div>
+<div class="prototype">SC.CV.SET x</div>
+<div class="short">Set CV value for the ER-301 virtual output <code>x</code></div>
+<div class="prototype">SC.CV.SLEW x y</div>
+<div class="short">Set the CV slew time for the ER-301 virtual output <code>x</code> in ms</div>
+<h1 id="fader">Fader</h1><div class="prototype">FADER x</div>
+<div class="short">reads the value of the <code>FADER</code> slider <code>x</code>; default return range is from 0 to 16383</div>
+<div class="prototype">FADER.SCALE x y z</div>
+<div class="short">Set static scaling of the <code>FADER x</code> to between <code>min</code> and <code>max</code>.</div>
+<div class="prototype">FADER.CAL.MIN x</div>
+<div class="short">Reads <code>FADER x</code> minimum position and assigns a zero value</div>
+<div class="prototype">FADER.CAL.MAX x</div>
+<div class="short">Reads <code>FADER x</code> maximum position and assigns the maximum point</div>
+<div class="prototype">FADER.CAL.RESET x</div>
+<div class="short">Resets the calibration for FADER x</div>
+<h1 id="matrixarchate">Matrixarchate</h1><div class="prototype">MA.SELECT x</div>
+<div class="short">select the default matrixarchate module, default <code>1</code></div>
+<div class="prototype">MA.STEP</div>
+<div class="short">advance program sequencer</div>
+<div class="prototype">MA.RESET</div>
+<div class="short">reset program sequencer</div>
+<div class="prototype">MA.PGM pgm</div>
+<div class="short">select the current program (1-based)</div>
+<div class="prototype">MA.ON x y</div>
+<div class="short">connect row <code>x</code> and column <code>y</code> in the current program (rows/columns are 0-based)</div>
+<div class="prototype">MA.PON pgm x y</div>
+<div class="short">connect row <code>x</code> and column <code>y</code> in program <code>pgm</code></div>
+<div class="prototype">MA.OFF x y</div>
+<div class="short">disconnect row <code>x</code> and column <code>y</code> in the current program</div>
+<div class="prototype">MA.POFF x y pgm</div>
+<div class="short">connect row <code>x</code> and column <code>y</code> in program <code>pgm</code></div>
+<div class="prototype">MA.SET x y state</div>
+<div class="short">set the connection at row <code>x</code> and column <code>y</code> to <code>state</code> (1 - on, 0 - off)</div>
+<div class="prototype">MA.PSET pgm x y state</div>
+<div class="short">set the connection at row <code>x</code> and column <code>y</code> in program <code>pgm</code> to <code>state</code> (1 - on, 0 - off)</div>
+<div class="prototype">MA.COL col</div>
+<div class="short">get or set column <code>col</code> (as a 16 bit unsigned value where each bit represents a connection)</div>
+<div class="prototype">MA.PCOL pgm col</div>
+<div class="short">get or set column <code>col</code> in program <code>pgm</code></div>
+<div class="prototype">MA.ROW row</div>
+<div class="short">get or set row <code>row</code></div>
+<div class="prototype">MA.PROW pgm row</div>
+<div class="short">get or set row <code>row</code> in program <code>pgm</code></div>
+<div class="prototype">MA.CLR</div>
+<div class="short">clear all connections</div>
+<div class="prototype">MA.PCLR pgm</div>
+<div class="short">clear all connections in program <code>pgm</code></div>
+<h1 id="telex_i">TELEXi</h1><div class="prototype">TI.PARAM x</div>
+<div class="short">reads the value of <code>PARAM</code> knob <code>x</code>; default return range is from 0 to 16383; return range can be altered by the <code>TI.PARAM.MAP</code> command</div>
+<div class="prototype">TI.PARAM.QT x</div>
+<div class="short">return the quantized value for <code>PARAM</code> knob <code>x</code> using the scale set by <code>TI.PARAM.SCALE</code>; default return range is from 0 to 16383</div>
+<div class="prototype">TI.PARAM.N x</div>
+<div class="short">return the quantized note number for <code>PARAM</code> knob <code>x</code> using the scale set by <code>TI.PARAM.SCALE</code></div>
+<div class="prototype">TI.PARAM.SCALE x</div>
+<div class="short">select scale # <code>y</code> for <code>PARAM</code> knob <code>x</code>; scales listed in full description</div>
+<div class="prototype">TI.PARAM.MAP x y z</div>
+<div class="short">maps the PARAM values for input <code>x</code> across the range y - z (defaults 0-16383)</div>
+<div class="prototype">TI.IN x</div>
+<div class="short">reads the value of IN jack <code>x</code>; default return range is from -16384 to 16383 - representing -10V to +10V; return range can be altered by the <code>TI.IN.MAP</code> command</div>
+<div class="prototype">TI.IN.QT x</div>
+<div class="short">return the quantized value for <code>IN</code> jack <code>x</code> using the scale set by <code>TI.IN.SCALE</code>; default return range is from -16384 to 16383 - representing -10V to +10V</div>
+<div class="prototype">TI.IN.N x</div>
+<div class="short">return the quantized note number for <code>IN</code> jack <code>x</code> using the scale set by <code>TI.IN.SCALE</code></div>
+<div class="prototype">TI.IN.SCALE x</div>
+<div class="short">select scale # <code>y</code> for <code>IN</code> jack <code>x</code>; scales listed in full description</div>
+<div class="prototype">TI.IN.MAP x y z</div>
+<div class="short">maps the IN values for input jack <code>x</code> across the range y - z (default range is -16384 to 16383 - representing -10V to +10V)</div>
+<div class="prototype">TI.PARAM.INIT x</div>
+<div class="short">initializes <code>PARAM</code> knob <code>x</code> back to the default boot settings and behaviors; neutralizes mapping (but not calibration)</div>
+<div class="prototype">TI.IN.INIT x</div>
+<div class="short">initializes <code>IN</code> jack <code>x</code> back to the default boot settings and behaviors; neutralizes mapping (but not calibration)</div>
+<div class="prototype">TI.INIT d</div>
+<div class="short">initializes all of the <code>PARAM</code> and <code>IN</code> inputs for device number <code>d</code> (1-8)</div>
+<div class="prototype">TI.PARAM.CALIB x y</div>
+<div class="short">calibrates the scaling for PARAM knob <code>x</code>; <code>y</code> of <code>0</code> sets the bottom bound; <code>y</code> of <code>1</code> sets the top bound</div>
+<div class="prototype">TI.IN.CALIB x y</div>
+<div class="short">calibrates the scaling for IN jack <code>x</code>; <code>y</code> of <code>-1</code> sets the <code>-10V</code> point; <code>y</code> of <code>0</code> sets the <code>0V</code> point; <code>y</code> of <code>1</code> sets the <code>+10V</code> point</div>
+<div class="prototype">TI.STORE d</div>
+<div class="short">stores the calibration data for TXi number <code>d</code> (1-8) to its internal flash memory</div>
+<div class="prototype">TI.RESET d</div>
+<div class="short">resets the calibration data for TXi number <code>d</code> (1-8) to its factory defaults (no calibration)</div>
+<h1 id="telex_o">TELEXo</h1><div class="prototype">TO.TR x y</div>
+<div class="short">sets the <code>TR</code> value for output <code>x</code> to <code>y</code> (0/1)</div>
+<div class="prototype">TO.TR.TOG x</div>
+<div class="short">toggles the <code>TR</code> value for output <code>x</code></div>
+<div class="prototype">TO.TR.PULSE x</div>
+<div class="short">pulses the <code>TR</code> value for output <code>x</code> for the duration set by <code>TO.TR.TIME/S/M</code></div>
+<div class="prototype">TO.TR.PULSE.DIV x y</div>
+<div class="short">sets the clock division factor for <code>TR</code> output <code>x</code> to <code>y</code></div>
+<div class="prototype">TO.TR.PULSE.MUTE x y</div>
+<div class="short">mutes or un-mutes <code>TR</code> output <code>x</code>; <code>y</code> is 1 (mute) or 0 (un-mute)</div>
+<div class="prototype">TO.TR.TIME x y</div>
+<div class="short">sets the time for <code>TR.PULSE</code> on output <code>n</code>; <code>y</code> in milliseconds</div>
+<div class="prototype">TO.TR.TIME.S x y</div>
+<div class="short">sets the time for <code>TR.PULSE</code> on output <code>n</code>; <code>y</code> in seconds</div>
+<div class="prototype">TO.TR.TIME.M x y</div>
+<div class="short">sets the time for <code>TR.PULSE</code> on output <code>n</code>; <code>y</code> in minutes</div>
+<div class="prototype">TO.TR.WIDTH x y</div>
+<div class="short">sets the time for <code>TR.PULSE</code> on output <code>n</code> based on the width of its current metronomic value; <code>y</code> in percentage (0-100)</div>
+<div class="prototype">TO.TR.POL x y</div>
+<div class="short">sets the polarity for <code>TR</code> output <code>n</code></div>
+<div class="prototype">TO.TR.M.ACT x y</div>
+<div class="short">sets the active status for the independent metronome for output <code>x</code> to <code>y</code> (<code>0</code>/<code>1</code>); default <code>0</code> (disabled)</div>
+<div class="prototype">TO.TR.M x y</div>
+<div class="short">sets the independent metronome interval for output <code>x</code> to <code>y</code> in milliseconds; default <code>1000</code></div>
+<div class="prototype">TO.TR.M.S x y</div>
+<div class="short">sets the independent metronome interval for output <code>x</code> to <code>y</code> in seconds; default <code>1</code></div>
+<div class="prototype">TO.TR.M.M x y</div>
+<div class="short">sets the independent metronome interval for output <code>x</code> to <code>y</code> in minutes</div>
+<div class="prototype">TO.TR.M.BPM x y</div>
+<div class="short">sets the independent metronome interval for output <code>x</code> to <code>y</code> in Beats Per Minute</div>
+<div class="prototype">TO.TR.M.COUNT x y</div>
+<div class="short">sets the number of repeats before deactivating for output <code>x</code> to <code>y</code>; default <code>0</code> (infinity)</div>
+<div class="prototype">TO.TR.M.MUL x y</div>
+<div class="short">multiplies the <code>M</code> rate on <code>TR</code> output <code>x</code> by <code>y</code>; <code>y</code> defaults to <code>1</code> - no multiplication</div>
+<div class="prototype">TO.TR.M.SYNC x</div>
+<div class="short">synchronizes the <code>PULSE</code> for metronome on <code>TR</code> output number <code>x</code></div>
+<div class="prototype">TO.M.ACT d y</div>
+<div class="short">sets the active status for the 4 independent metronomes on device <code>d</code> (1-8) to <code>y</code> (<code>0</code>/<code>1</code>); default <code>0</code> (disabled)</div>
+<div class="prototype">TO.M d y</div>
+<div class="short">sets the 4 independent metronome intervals for device <code>d</code> (1-8) to <code>y</code> in milliseconds; default <code>1000</code></div>
+<div class="prototype">TO.M.S d y</div>
+<div class="short">sets the 4 independent metronome intervals for device <code>d</code> to <code>y</code> in seconds; default <code>1</code></div>
+<div class="prototype">TO.M.M d y</div>
+<div class="short">sets the 4 independent metronome intervals for device <code>d</code> to <code>y</code> in minutes</div>
+<div class="prototype">TO.M.BPM d y</div>
+<div class="short">sets the 4 independent metronome intervals for device <code>d</code> to <code>y</code> in Beats Per Minute</div>
+<div class="prototype">TO.M.COUNT d y</div>
+<div class="short">sets the number of repeats before deactivating for the 4 metronomes on device <code>d</code> to <code>y</code>; default <code>0</code> (infinity)</div>
+<div class="prototype">TO.M.SYNC d</div>
+<div class="short">synchronizes the 4 metronomes for device number <code>d</code> (1-8)</div>
+<div class="prototype">TO.CV x</div>
+<div class="short">CV target output <code>x</code>; <code>y</code> values are bipolar (-16384 to +16383) and map to -10 to +10</div>
+<div class="prototype">TO.CV.SLEW x y</div>
+<div class="short">set the slew amount for output <code>x</code>; <code>y</code> in milliseconds</div>
+<div class="prototype">TO.CV.SLEW.S x y</div>
+<div class="short">set the slew amount for output <code>x</code>; <code>y</code> in seconds</div>
+<div class="prototype">TO.CV.SLEW.M x y</div>
+<div class="short">set the slew amount for output <code>x</code>; <code>y</code> in minutes</div>
+<div class="prototype">TO.CV.SET x y</div>
+<div class="short">set the CV for output <code>x</code> (ignoring <code>SLEW</code>); <code>y</code> values are bipolar (-16384 to +16383) and map to -10 to +10</div>
+<div class="prototype">TO.CV.OFF x y</div>
+<div class="short">set the CV offset for output <code>x</code>; <code>y</code> values are added at the final stage</div>
+<div class="prototype">TO.CV.QT x y</div>
+<div class="short">CV target output <code>x</code>; <code>y</code> is quantized to output's current <code>CV.SCALE</code></div>
+<div class="prototype">TO.CV.QT.SET x y</div>
+<div class="short">set the CV for output <code>x</code> (ignoring <code>SLEW</code>); <code>y</code> is quantized to output's current <code>CV.SCALE</code></div>
+<div class="prototype">TO.CV.N x y</div>
+<div class="short">target the CV to note <code>y</code> for output <code>x</code>; <code>y</code> is indexed in the output's current <code>CV.SCALE</code></div>
+<div class="prototype">TO.CV.N.SET x y</div>
+<div class="short">set the CV to note <code>y</code> for output <code>x</code>; <code>y</code> is indexed in the output's current <code>CV.SCALE</code> (ignoring <code>SLEW</code>)</div>
+<div class="prototype">TO.CV.SCALE x y</div>
+<div class="short">select scale # <code>y</code> for CV output <code>x</code>; scales listed in full description</div>
+<div class="prototype">TO.CV.LOG x y</div>
+<div class="short">translates the output for <code>CV</code> output <code>x</code> to logarithmic mode <code>y</code>; <code>y</code> defaults to <code>0</code> (off); mode <code>1</code> is for 0-16384 (0V-10V), mode <code>2</code> is for 0-8192 (0V-5V), mode <code>3</code> is for 0-4096 (0V-2.5V), etc.</div>
+<div class="prototype">TO.CV.CALIB x</div>
+<div class="short">Locks the current offset (<code>CV.OFF</code>) as a calibration offset and saves it to persist between power cycles for output <code>x</code>.</div>
+<div class="prototype">TO.CV.RESET x</div>
+<div class="short">Clears the calibration offset for output <code>x</code>.</div>
+<div class="prototype">TO.OSC x y</div>
+<div class="short">targets oscillation for CV output <code>x</code> to <code>y</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is 1v/oct translated from the standard range (1-16384); a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.SET x y</div>
+<div class="short">set oscillation for CV output <code>x</code> to <code>y</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is 1v/oct translated from the standard range (1-16384); a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.QT x y</div>
+<div class="short">targets oscillation for CV output <code>x</code> to <code>y</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is 1v/oct translated from the standard range (1-16384) and quantized to current <code>OSC.SCALE</code>; a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.QT.SET x y</div>
+<div class="short">set oscillation for CV output <code>x</code> to <code>y</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is 1v/oct translated from the standard range (1-16384) and quantized to current <code>OSC.SCALE</code>; a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.N x y</div>
+<div class="short">targets oscillation for CV output <code>x</code> to note <code>y</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; see quantization scale reference for <code>y</code>; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.N.SET x y</div>
+<div class="short">sets oscillation for CV output <code>x</code> to note <code>y</code> (ignores <code>CV.OSC.SLEW</code>); see quantization scale reference for <code>y</code>; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.FQ x y</div>
+<div class="short">targets oscillation for CV output <code>x</code> to frequency <code>y</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is in Hz; a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.FQ.SET x y</div>
+<div class="short">sets oscillation for CV output <code>x</code> to frequency <code>y</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is in Hz; a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.LFO x y</div>
+<div class="short">targets oscillation for CV output <code>x</code> to LFO frequency <code>y</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is in mHz (millihertz: 10^-3 Hz); a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.LFO.SET x y</div>
+<div class="short">sets oscillation for CV output <code>x</code> to LFO frequency <code>y</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is in mHz (millihertz: 10^-3 Hz); a value of <code>0</code> disables oscillation; <code>CV</code> amplitude is used as the peak for oscillation and needs to be <code>> 0</code> for it to be perceivable</div>
+<div class="prototype">TO.OSC.CYC x y</div>
+<div class="short">targets the oscillator cycle length to <code>y</code> for CV output <code>x</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is in milliseconds</div>
+<div class="prototype">TO.OSC.CYC.SET x y</div>
+<div class="short">sets the oscillator cycle length to <code>y</code> for CV output <code>x</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is in milliseconds</div>
+<div class="prototype">TO.OSC.CYC.S x y</div>
+<div class="short">targets the oscillator cycle length to <code>y</code> for CV output <code>x</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is in seconds</div>
+<div class="prototype">TO.OSC.CYC.S.SET x y</div>
+<div class="short">sets the oscillator cycle length to <code>y</code> for CV output <code>x</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is in seconds</div>
+<div class="prototype">TO.OSC.CYC.M x y</div>
+<div class="short">targets the oscillator cycle length to <code>y</code> for CV output <code>x</code> with the portamento rate determined by the <code>TO.OSC.SLEW</code> value; <code>y</code> is in minutes</div>
+<div class="prototype">TO.OSC.CYC.M.SET x y</div>
+<div class="short">sets the oscillator cycle length to <code>y</code> for CV output <code>x</code> (ignores <code>CV.OSC.SLEW</code>); <code>y</code> is in minutes</div>
+<div class="prototype">TO.OSC.SCALE x y</div>
+<div class="short">select scale # <code>y</code> for CV output <code>x</code>; scales listed in full description</div>
+<div class="prototype">TO.OSC.WAVE x y</div>
+<div class="short">set the waveform for output <code>x</code> to <code>y</code>; <code>y</code> values range <code>0-4500</code>. There are 45 different waveforms, values translate to sine (0), triangle (100), saw (200), pulse (300) all the way to random/noise (4500); oscillator shape between values is a blend of the pure waveforms</div>
+<div class="prototype">TO.OSC.RECT x y</div>
+<div class="short">rectifies the polarity of the oscillator for output <code>x</code> to <code>y</code>; range for <code>y</code> is -2 to 2; default is 0 (no rectification); 1 & -1 are partial rectification - omitting all values on the other side of the sign; 2 & -2 are full rectification - inverting values from the other pole</div>
+<div class="prototype">TO.OSC.WIDTH x y</div>
+<div class="short">sets the width of the pulse wave on output <code>x</code> to <code>y</code>; <code>y</code> is a percentage of total width (0 to 100); only affects waveform <code>3000</code></div>
+<div class="prototype">TO.OSC.SYNC x</div>
+<div class="short">resets the phase of the oscillator on <code>CV</code> output <code>x</code> (relative to <code>TO.OSC.PHASE</code>)</div>
+<div class="prototype">TO.OSC.PHASE x y</div>
+<div class="short">sets the phase offset of the oscillator on CV output <code>x</code> to <code>y</code> (0 to 16383); <code>y</code> is the range of one cycle</div>
+<div class="prototype">TO.OSC.SLEW x y</div>
+<div class="short">sets the frequency slew time (portamento) for the oscillator on CV output <code>x</code> to <code>y</code>; <code>y</code> in milliseconds</div>
+<div class="prototype">TO.OSC.SLEW.S x y</div>
+<div class="short">sets the frequency slew time (portamento) for the oscillator on CV output <code>x</code> to <code>y</code>; <code>y</code> in seconds</div>
+<div class="prototype">TO.OSC.SLEW.M x y</div>
+<div class="short">sets the frequency slew time (portamento) for the oscillator on CV output <code>x</code> to <code>y</code>; <code>y</code> in minutes</div>
+<div class="prototype">TO.OSC.CTR x y</div>
+<div class="short">centers the oscillation on CV output <code>x</code> to <code>y</code>; <code>y</code> values are bipolar (-16384 to +16383) and map to -10 to +10</div>
+<div class="prototype">TO.ENV.ACT x y</div>
+<div class="short">activates/deactivates the AD envelope generator for the CV output <code>x</code>; <code>y</code> turns the envelope generator off (0 - default) or on (1);  <code>CV</code> amplitude is used as the peak for the envelope and needs to be <code>> 0</code> for the envelope to be perceivable</div>
+<div class="prototype">TO.ENV x y</div>
+<div class="short">This parameter essentially allows output <code>x</code> to act as a gate between the 0 and 1 state. Changing this value from 0 to 1 causes the envelope to trigger the attack phase and hold at the peak CV value; changing this value from 1 to 0 causes the decay stage of the envelope to be triggered.</div>
+<div class="prototype">TO.ENV.TRIG x</div>
+<div class="short">triggers the envelope at <code>CV</code> output <code>x</code> to cycle;  <code>CV</code> amplitude is used as the peak for the envelope and needs to be <code>> 0</code> for the envelope to be perceivable</div>
+<div class="prototype">TO.ENV.ATT x y</div>
+<div class="short">set the envelope attack time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in milliseconds (default 12 ms)</div>
+<div class="prototype">TO.ENV.ATT.S x y</div>
+<div class="short">set the envelope attack time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in seconds</div>
+<div class="prototype">TO.ENV.ATT.M x y</div>
+<div class="short">set the envelope attack time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in minutes</div>
+<div class="prototype">TO.ENV.DEC x y</div>
+<div class="short">set the envelope decay time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in milliseconds (default 250 ms)</div>
+<div class="prototype">TO.ENV.DEC.S x y</div>
+<div class="short">set the envelope decay time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in seconds</div>
+<div class="prototype">TO.ENV.DEC.M x y</div>
+<div class="short">set the envelope decay time to <code>y</code> for <code>CV</code> output <code>x</code>; <code>y</code> in minutes</div>
+<div class="prototype">TO.ENV.EOR x n</div>
+<div class="short">fires a <code>PULSE</code> at the End of Rise to the unit-local trigger output 'n' for the envelope on <code>CV</code> output <code>x</code>; <code>n</code> refers to trigger output 1-4 on the same TXo as CV output 'y'</div>
+<div class="prototype">TO.ENV.EOC x n</div>
+<div class="short">fires a <code>PULSE</code> at the End of Cycle to the unit-local trigger output 'n' for the envelope on <code>CV</code> output <code>x</code>; <code>n</code> refers to trigger output 1-4 on the same TXo as CV output 'y'</div>
+<div class="prototype">TO.ENV.LOOP x y</div>
+<div class="short">causes the envelope on <code>CV</code> output <code>x</code> to loop for <code>y</code> times; a <code>y</code> of <code>0</code> will cause the envelope to loop infinitely; setting <code>y</code> to 1 (default) disables looping and (if currently looping) will cause it to finish its current cycle and cease</div>
+<div class="prototype">TO.TR.INIT x</div>
+<div class="short">initializes <code>TR</code> output <code>x</code> back to the default boot settings and behaviors; neutralizes metronomes, dividers, pulse counters, etc.</div>
+<div class="prototype">TO.CV.INIT x</div>
+<div class="short">initializes <code>CV</code> output <code>x</code> back to the default boot settings and behaviors; neutralizes offsets, slews, envelopes, oscillation, etc.</div>
+<div class="prototype">TO.INIT d</div>
+<div class="short">initializes all of the <code>TR</code> and <code>CV</code> outputs for device number <code>d</code> (1-8)</div>
+<div class="prototype">TO.KILL d</div>
+<div class="short">cancels all <code>TR</code> pulses and <code>CV</code> slews for device number <code>d</code> (1-8)</div>
+<h1 id="disting">Disting EX</h1><div class="prototype">EX</div>
+<div class="short">get or set currently selected unit to <code>x</code> (1-4)</div>
+<div class="prototype">EX1: ...</div>
+<div class="short">send following Disting ops to unit 1 ignoring the currently selected unit</div>
+<div class="prototype">EX2: ...</div>
+<div class="short">send following Disting ops to unit 2 ignoring the currently selected unit</div>
+<div class="prototype">EX3: ...</div>
+<div class="short">send following Disting ops to unit 3 ignoring the currently selected unit</div>
+<div class="prototype">EX4: ...</div>
+<div class="short">send following Disting ops to unit 4 ignoring the currently selected unit</div>
+<div class="prototype">EX.PRESET</div>
+<div class="short">load preset <code>x</code> or get the currently loaded preset</div>
+<div class="prototype">EX.SAVE x</div>
+<div class="short">save to preset <code>x</code></div>
+<div class="prototype">EX.RESET</div>
+<div class="short">reset the currently loaded preset</div>
+<div class="prototype">EX.ALG</div>
+<div class="short">get or set the current algorithm to <code>x</code> (single algorithms only)</div>
+<div class="prototype">EX.CTRL x y</div>
+<div class="short">set I2C controller <code>x</code> to value <code>y</code></div>
+<div class="prototype">EX.PARAM x</div>
+<div class="short">set parameter <code>x</code> to value <code>y</code> or get the current parameter value</div>
+<div class="prototype">EX.PV x y</div>
+<div class="short">set paramEter <code>x</code> using a value determined by scaling <code>y</code> from 0..16384 range.</div>
+<div class="prototype">EX.MIN x</div>
+<div class="short">get the minimum possible value for parameter <code>x</code></div>
+<div class="prototype">EX.MAX x</div>
+<div class="short">get the maximum possible value for parameter <code>x</code></div>
+<div class="prototype">EX.VOX x y z</div>
+<div class="short">send a note to voice <code>x</code> using pitch <code>y</code> and velocity <code>z</code></div>
+<div class="prototype">EX.VOX.P x y</div>
+<div class="short">set voice <code>x</code> to pitch <code>y</code></div>
+<div class="prototype">EX.VOX.O x</div>
+<div class="short">send a note off to voice <code>x</code></div>
+<div class="prototype">EX.NOTE x y</div>
+<div class="short">send a note using pitch <code>x</code> and velocity <code>y</code> (voice allocated by the Disting)</div>
+<div class="prototype">EX.NOTE.O x</div>
+<div class="short">send a note off using pitch <code>x</code></div>
+<div class="prototype">EX.ALLOFF</div>
+<div class="short">all notes off</div>
+<div class="prototype">EX.T x</div>
+<div class="short">send a trigger to voice <code>x</code> with medium velocity (use with SD Triggers algo)</div>
+<div class="prototype">EX.TV x y</div>
+<div class="short">send a trigger to voice <code>x</code> using velocity <code>y</code> (use with SD Triggers algo)</div>
+<div class="prototype">EX.REC x</div>
+<div class="short">control WAV recorder recording: 1 to start, 0 to stop</div>
+<div class="prototype">EX.PLAY x</div>
+<div class="short">control WAV recorder playback: 1 to start, 0 to stop</div>
+<div class="prototype">EX.AL.P x</div>
+<div class="short">set Augustus Loop pitch to value <code>x</code></div>
+<div class="prototype">EX.AL.CLK</div>
+<div class="short">send clock to Augustus Loop</div>
+<div class="prototype">EX.LP x</div>
+<div class="short">get current state for loop <code>x</code></div>
+<div class="prototype">EX.LP.REC x</div>
+<div class="short">toggle recording for loop <code>x</code></div>
+<div class="prototype">EX.LP.PLAY x</div>
+<div class="short">toggle playback for loop <code>x</code></div>
+<div class="prototype">EX.LP.CLR x</div>
+<div class="short">clear loop <code>x</code></div>
+<div class="prototype">EX.LP.REV x</div>
+<div class="short">toggle reverse for loop <code>x</code></div>
+<div class="prototype">EX.LP.REV? x</div>
+<div class="short">returns 1 if loop <code>x</code> is reversed, 0 otherwise</div>
+<div class="prototype">EX.LP.DOWN x</div>
+<div class="short">toggle octave down for loop <code>x</code></div>
+<div class="prototype">EX.LP.DOWN? x</div>
+<div class="short">return 1 if loop <code>x</code> is transposed octave down, 0 otherwise</div>
+<div class="prototype">EX.M.CH</div>
+<div class="short">get or set the currently selected MIDI channel (1-16)</div>
+<div class="prototype">EX.M.N x y</div>
+<div class="short">send MIDI Note On message for note <code>x</code> (0..127) and velocity <code>y</code> (0..127)</div>
+<div class="prototype">EX.M.NO x</div>
+<div class="short">send MIDI Note off message for note <code>x</code> (0..127)</div>
+<div class="prototype">EX.M.PB x</div>
+<div class="short">send MIDI Pitchbend message</div>
+<div class="prototype">EX.M.CC x y</div>
+<div class="short">send MIDI CC message for controller <code>x</code> (0..127) and value <code>y</code> (0..127)</div>
+<div class="prototype">EX.M.PRG x</div>
+<div class="short">send MIDI Program Change message</div>
+<div class="prototype">EX.M.CLK</div>
+<div class="short">send MIDI clock message</div>
+<div class="prototype">EX.M.START</div>
+<div class="short">send MIDI Start message</div>
+<div class="prototype">EX.M.STOP</div>
+<div class="short">send MIDI Stop message</div>
+<div class="prototype">EX.M.CONT</div>
+<div class="short">send MIDI Continue message</div>
+<div class="prototype">EX.SB.CH</div>
+<div class="short">get or set the currently selected Select Bus channel (1-16)</div>
+<div class="prototype">EX.SB.N x y</div>
+<div class="short">send Select Bus Note On message for note <code>x</code> (0..127) and velocity <code>y</code> (0..127)</div>
+<div class="prototype">EX.SB.NO x</div>
+<div class="short">send Select Bus Note off message for note <code>x</code> (0..127)</div>
+<div class="prototype">EX.SB.PB x</div>
+<div class="short">send Select Bus Pitchbend message</div>
+<div class="prototype">EX.SB.CC x y</div>
+<div class="short">send Select Bus CC message for controller <code>x</code> (0..127) and value <code>y</code> (0..127)</div>
+<div class="prototype">EX.SB.PRG x</div>
+<div class="short">send Select Bus Program Change message</div>
+<div class="prototype">EX.SB.CLK</div>
+<div class="short">send Select Bus clock message</div>
+<div class="prototype">EX.SB.START</div>
+<div class="short">send Select Bus Start message</div>
+<div class="prototype">EX.SB.STOP</div>
+<div class="short">send Select Bus Stop message</div>
+<div class="prototype">EX.SB.CONT</div>
+<div class="short">send Select Bus Continue message</div>
+<h1 id="wslashdelay">W/2.0 delay</h1><div class="prototype">W/D.FBK level</div>
+<div class="short">amount of feedback from read head to write head (s16V)</div>
+<div class="prototype">W/D.MIX fade</div>
+<div class="short">fade from dry to delayed signal</div>
+<div class="prototype">W/D.FILT cutoff</div>
+<div class="short">centre frequency of filter in feedback loop (s16V)</div>
+<div class="prototype">W/D.FREEZE is_active</div>
+<div class="short">deactivate record head to freeze the current buffer (s8)</div>
+<div class="prototype">W/D.TIME seconds</div>
+<div class="short">set delay buffer length in <code>seconds</code> (s16V), when rate == 1</div>
+<div class="prototype">W/D.LEN count divisions</div>
+<div class="short">set buffer loop length as a fraction of buffer time (u8)</div>
+<div class="prototype">W/D.POS count divisions</div>
+<div class="short">set loop start location as a fraction of buffer time (u8)</div>
+<div class="prototype">W/D.CUT count divisions</div>
+<div class="short">jump to loop location as a fraction of loop length (u8)</div>
+<div class="prototype">W/D.FREQ.RNG freq_range</div>
+<div class="short">TBD (s8)</div>
+<div class="prototype">W/D.RATE multiplier</div>
+<div class="short">direct <code>multiplier</code> (s16V) of tape speed</div>
+<div class="prototype">W/D.FREQ volts</div>
+<div class="short">manipulate tape speed with musical values (s16V)</div>
+<div class="prototype">W/D.CLK</div>
+<div class="short">receive clock pulse for synchronization</div>
+<div class="prototype">W/D.CLK.RATIO mul div</div>
+<div class="short">set clock pulses per buffer time, with clock <code>mul</code>/<code>div</code> (s8)</div>
+<div class="prototype">W/D.PLUCK volume</div>
+<div class="short">pluck the delay line with noise at volume (s16V)</div>
+<div class="prototype">W/D.MOD.RATE rate</div>
+<div class="short">set the multiplier for the modulation rate (s16V)</div>
+<div class="prototype">W/D.MOD.AMT amount</div>
+<div class="short">set the <code>amount</code> (s16V) of delay line modulation to be applied</div>
+<h1 id="wslashsynth">W/2.0 synth</h1><div class="prototype">W/S.PITCH voice pitch</div>
+<div class="short">set <code>voice</code> (s8) to <code>pitch</code> (s16V) in volts-per-octave</div>
+<div class="prototype">W/S.VEL voice velocity</div>
+<div class="short">strike the vactrol of <code>voice</code> (s8) at <code>velocity</code> (s16V) in volts</div>
+<div class="prototype">W/S.VOX voice pitch velocity</div>
+<div class="short">set <code>voice</code> (s8) to <code>pitch</code> (s16V) and strike the vactrol at <code>velocity</code> (s16V)</div>
+<div class="prototype">W/S.NOTE pitch level</div>
+<div class="short">dynamically assign a voice, set to <code>pitch</code> (s16V), strike with <code>velocity</code>(s16V)</div>
+<div class="prototype">W/S.AR.MODE is_ar</div>
+<div class="short">in attack-release mode, all notes are <code>plucked</code> and no <code>release</code> is required'</div>
+<div class="prototype">W/S.LPG.TIME time</div>
+<div class="short">vactrol <code>time</code> (s16V) constant. -5=drones, 0=vtl5c3, 5=blits</div>
+<div class="prototype">W/S.LPG.SYM symmetry</div>
+<div class="short">vactrol attack-release ratio. -5=fastest attack, 5=long swells (s16V)</div>
+<div class="prototype">W/S.CURVE curve</div>
+<div class="short">cross-fade waveforms: -5=square, 0=triangle, 5=sine (s16V)</div>
+<div class="prototype">W/S.RAMP ramp</div>
+<div class="short">waveform symmetry: -5=rampwave, 0=triangle, 5=sawtooth (NB: affects FM tone)</div>
+<div class="prototype">W/S.FM.INDEX index</div>
+<div class="short">amount of FM modulation. -5=negative, 0=minimum, 5=maximum (s16V)</div>
+<div class="prototype">W/S.FM.RATIO num den</div>
+<div class="short">ratio of the FM modulator to carrier as a ratio. floating point values up to 20.0 supported (s16V)</div>
+<div class="prototype">W/S.FM.ENV amount</div>
+<div class="short">amount of vactrol envelope applied to fm index, -5 to +5 (s16V)</div>
+<div class="prototype">W/S.PATCH jack param</div>
+<div class="short">patch a hardware <code>jack</code> (s8) to a <code>param</code> (s8) destination</div>
+<div class="prototype">W/S.VOICES count</div>
+<div class="short">set number of polyphonic voices to allocate. use 0 for unison mode (s8)</div>
+<h1 id="wslashtape">W/2.0 tape</h1><div class="prototype">W/T.REC active</div>
+<div class="short">Sets recording state to <code>active</code> (s8)</div>
+<div class="prototype">W/T.PLAY playback</div>
+<div class="short">Set the playback state. -1 will flip playback direction (s8)</div>
+<div class="prototype">W/T.REV</div>
+<div class="short">Reverse the direction of playback</div>
+<div class="prototype">W/T.SPEED speed deno</div>
+<div class="short">Set speed as a rate, or ratio. Negative values are reverse (s16V)</div>
+<div class="prototype">W/T.FREQ freq</div>
+<div class="short">Set speed as a <code>frequency</code> (s16V) style value. Maintains reverse state</div>
+<div class="prototype">W/T.ERASE.LVL level</div>
+<div class="short">Strength of erase head when recording. 0 is overdub, 1 is overwrite. Opposite of feedback (s16V)</div>
+<div class="prototype">W/T.MONITOR.LVL gain</div>
+<div class="short">Level of input passed directly to output (s16V)</div>
+<div class="prototype">W/T.REC.LVL gain</div>
+<div class="short">Level of input material recorded to tape (s16V)</div>
+<div class="prototype">W/T.ECHOMODE is_echo</div>
+<div class="short">Set to 1 to playback before erase. 0 (default) erases first (s8)</div>
+<div class="prototype">W/T.LOOP.START</div>
+<div class="short">Set the current time as the beginning of a loop</div>
+<div class="prototype">W/T.LOOP.END</div>
+<div class="short">Set the current time as the loop end, and jump to start</div>
+<div class="prototype">W/T.LOOP.ACTIVE state</div>
+<div class="short">Set the state of looping (s8)</div>
+<div class="prototype">W/T.LOOP.SCALE scale</div>
+<div class="short">Mul(Positive) or Div(Negative) loop brace by arg. Zero resets to original window (s8)</div>
+<div class="prototype">W/T.LOOP.NEXT direction</div>
+<div class="short">Move loop brace forward/backward by length of loop. Zero jumps to loop start (s8)</div>
+<div class="prototype">W/T.TIME seconds sub</div>
+<div class="short">Move playhead to an arbitrary location on tape (s16)</div>
+<div class="prototype">W/T.SEEK seconds sub</div>
+<div class="short">Move playhead relative to current position (s16)</div>
+<div class="prototype">W/T.CLEARTAPE</div>
+<div class="short">WARNING! Erases all recorded audio on the tape!</div>
+<h1 id="crow">Crow</h1><div class="prototype">CROW.SEL x</div>
+<div class="short">Sets target crow unit (<code>1</code> (default), to <code>4</code>).</div>
+<div class="prototype">CROWN: ...</div>
+<div class="short">Send following CROW OPs to all units starting with selected unit.</div>
+<div class="prototype">CROW1: ...</div>
+<div class="short">Send following CROW OPs to unit 1 ignoring the currently selected unit.</div>
+<div class="prototype">CROW2: ...</div>
+<div class="short">Send following CROW OPs to unit 2 ignoring the currently selected unit.</div>
+<div class="prototype">CROW3: ...</div>
+<div class="short">Send following CROW OPs to unit 3 ignoring the currently selected unit.</div>
+<div class="prototype">CROW4: ...</div>
+<div class="short">Send following CROW OPs to unit 4 ignoring the currently selected unit.</div>
+<div class="prototype">CROW.V x y</div>
+<div class="short">Sets output <code>x</code> to value <code>y</code>. Use <code>V y</code> for volts.</div>
+<div class="prototype">CROW.SLEW x y</div>
+<div class="short">Sets output <code>x</code> slew rate to <code>y</code> milliseconds.</div>
+<div class="prototype">CROW.C1 x</div>
+<div class="short">Calls the function <code>ii.self.call1(x)</code> on crow.</div>
+<div class="prototype">CROW.C2 x y</div>
+<div class="short">Calls the function <code>ii.self.call2(x, y)</code> on crow.</div>
+<div class="prototype">CROW.C3 x y z</div>
+<div class="short">Calls the function <code>ii.self.call3(x, y, z)</code> on crow.</div>
+<div class="prototype">CROW.C4 x y z t</div>
+<div class="short">Calls the function <code>ii.self.call4(x, y, z, t)</code> on crow.</div>
+<div class="prototype">CROW.RST</div>
+<div class="short">Calls the function <code>crow.reset()</code> returning crow to default state.</div>
+<div class="prototype">CROW.PULSE x y z t</div>
+<div class="short">Creates a trigger pulse on output <code>x</code> with duration <code>y</code> (ms) to voltage <code>z</code> with polarity <code>t</code>.</div>
+<div class="prototype">CROW.AR x y z t</div>
+<div class="short">Creates an envelope on output <code>x</code>, rising in <code>y</code> ms, falling in <code>z</code> ms, and reaching height <code>t</code>.</div>
+<div class="prototype">CROW.LFO x y z t</div>
+<div class="short">Starts an envelope on output <code>x</code> at rate <code>y</code> where <code>0 = 1Hz</code> with 1v/octave scaling. <code>z</code> sets amplitude and <code>t</code> sets skew for assymetrical triangle waves.</div>
+<div class="prototype">CROW.IN x</div>
+<div class="short">Gets voltage at input <code>x</code>.</div>
+<div class="prototype">CROW.OUT x</div>
+<div class="short">Gets voltage of output <code>x</code>.</div>
+<div class="prototype">CROW.Q0</div>
+<div class="short">Returns the result of calling the function <code>crow.self.query0()</code>.</div>
+<div class="prototype">CROW.Q1 x</div>
+<div class="short">Returns the result of calling the function <code>crow.self.query1(x)</code>.</div>
+<div class="prototype">CROW.Q2 x y</div>
+<div class="short">Returns the result of calling the function <code>crow.self.query2(x, y)</code>.</div>
+<div class="prototype">CROW.Q3 x y z</div>
+<div class="short">Returns the result of calling the function <code>crow.self.query3(x, y, z)</code>.</div>
 </div></div>
 </body>
 </html>
